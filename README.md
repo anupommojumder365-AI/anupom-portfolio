@@ -83,7 +83,7 @@ Add exact HTTP(S) githubUrl and demoUrl values to project data. Demo links appea
 
 The form has three steps with state held only in memory. It validates choices, project details, name, email and WhatsApp number when selected. Contact data is not logged, put in URLs, persisted in browser storage, or shown publicly. There is no real submission endpoint configured by default.
 
-The Email me button and other mail links read profile.email (currently anupommojumdernew@gmail.com). The adjacent copy button uses the browser clipboard API with accessible success/error feedback. The contact section does not display the address as plain text. Clipboard access requires a secure context such as HTTPS or localhost.
+The Email me button and other mail links read `profile.email`; the address is intentionally not printed in this README. For contact, use the [GitHub profile](https://github.com/anupommojumder365-AI) or the website's **Email me** button. The adjacent copy button uses the browser clipboard API with accessible success/error feedback. The contact section does not display the address as plain text. Clipboard access requires a secure context such as HTTPS or localhost.
 
 Copy .env.example to .env.local and set VITE_CONTACT_WEBHOOK_URL to a PUBLIC webhook or submission proxy URL. Restart Vite after changing environment variables. All VITE_ variables are shipped to the browser; never place authentication credentials in them.
 

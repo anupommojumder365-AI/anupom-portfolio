@@ -1,0 +1,43 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+.env
+.env.*
+!.env.example
+test-results/
+playwright-report/
+
+# Local source materials; approved public copies are kept under public/projects.
+/AI Networking Intelligence Agent/
+/AI Voice Agent & Call Automation/
+/AI Sophie AI Call Answering for NCL Marketing Ltd/
+/B2B Lead Automation Engine/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local Vercel project metadata and credentials
+.vercel/
+
+# Original local reference files; public copies are tracked separately.
+/avater.jpg
+/cal.com.txt
+/github link.txt

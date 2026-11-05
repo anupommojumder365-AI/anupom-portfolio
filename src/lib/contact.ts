@@ -79,61 +79,34 @@ export function validateLead(data: LeadInput): LeadErrors {
   return errors;
 }
 
-export function configuredWebhook(): string | undefined {
-  const value = import.meta.env.VITE_CONTACT_WEBHOOK_URL?.trim();
-  return isValidExternalUrl(value) ? value : undefined;
+export function configuredSupabase(): { url: string; key: string } | undefined {
+  const url = import.meta.env.VITE_SUPABASE_URL?.trim();
+  const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY?.trim();
+  if (!url || !isValidExternalUrl(url) || !key?.startsWith("sb_publishable_")) return undefined;
+  return { url: url.replace(/\/$/, ""), key };
 }
 
-// Public endpoint only. Credentials and Turnstile verification belong on the server.
-// n8n must validate, deduplicate requestId, deliver/store privately, then acknowledge.
 export async function submitLead(
   data: LeadInput,
   requestId: string,
-  options?: { endpoint?: string; turnstileToken?: string },
 ): Promise<void> {
   if (Object.keys(validateLead(data)).length)
     throw new Error("Please correct the highlighted fields.");
-  const endpoint = options?.endpoint ?? configuredWebhook();
-  if (!endpoint || !isValidExternalUrl(endpoint))
-    throw new Error(
-      "Submission is not configured. Please email Anupom directly.",
-    );
-  const { websiteTrap: _honeypot, ...lead } = data;
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      ...lead,
-      requestId,
-      turnstileToken: options?.turnstileToken,
-      source: "portfolio-contact",
-    }),
-    signal: AbortSignal.timeout(15000),
-    credentials: "omit",
-    referrerPolicy: "no-referrer",
-  });
-  if (!response.ok)
-    throw new Error(
-      "The request could not be confirmed. Please retry or email Anupom directly.",
-    );
-  let result: unknown;
-  try {
-    result = await response.json();
-  } catch {
-    throw new Error(
-      "Delivery was not confirmed. Please retry or email Anupom directly.",
-    );
+  const database = configuredSupabase();
+  if (database) {
+    const response = await fetch(`${database.url}/rest/v1/portfolio_contact_submissions`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", apikey: database.key, Prefer: "return=minimal" },
+      body: JSON.stringify({
+        request_id: requestId, automation: data.automation, details: data.details.trim(),
+        budget: data.budget, timeline: data.timeline, preferred_contact: data.preferredContact,
+        name: data.name.trim(), email: data.email.trim(), company: data.company.trim(), whatsapp: data.whatsapp.trim(),
+      }),
+      signal: AbortSignal.timeout(15000), credentials: "omit", referrerPolicy: "no-referrer",
+    });
+    if (response.status !== 201 && response.status !== 204)
+      throw new Error("The request could not be confirmed. Please email Anupom directly before retrying.");
+    return;
   }
-  if (
-    !result ||
-    typeof result !== "object" ||
-    !("success" in result) ||
-    result.success !== true ||
-    !("requestId" in result) ||
-    result.requestId !== requestId
-  ) {
-    throw new Error(
-      "Delivery was not confirmed. Please retry or email Anupom directly.",
-    );
-  }
+  throw new Error("Submission is not configured. Please email Anupom directly.");
 }

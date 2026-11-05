@@ -10,7 +10,7 @@ import {
 import {
   automationTypes,
   budgets,
-  configuredWebhook,
+  configuredSupabase,
   contactMethods,
   emptyLead,
   fieldsByStep,
@@ -39,7 +39,7 @@ export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const errors = validateLead(data);
-  const endpoint = configuredWebhook();
+  const endpoint = configuredSupabase();
   const update = (key: keyof LeadInput, value: string) => {
     setData((previous) => ({ ...previous, [key]: value }));
     requestId.current = "";
@@ -185,7 +185,7 @@ export function ContactForm() {
         <h3 className="text-2xl font-semibold">
           Thanks, {data.name.trim()}. Your request is in.
         </h3>
-        <p className="mt-4 text-muted">I’ll reply within 24 hours.</p>
+        <p className="mt-4 text-muted">Your enquiry has been saved for review.</p>
       </div>
     );
 

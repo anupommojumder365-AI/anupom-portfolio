@@ -4,8 +4,10 @@ import { ContactForm } from "../contact/ContactForm";
 import { SchedulingLink } from "./ServicesSection";
 import { profile } from "../../data/profile";
 import { isValidExternalUrl } from "../../lib/projects";
+import { configuredSupabase } from "../../lib/contact";
 
 export function ContactSection() {
+  const formAvailable = Boolean(configuredSupabase());
   return (
     <section
       id="contact"
@@ -21,8 +23,7 @@ export function ContactSection() {
           Have a process that eats your time?
         </h2>
         <p className="mt-5 leading-8 text-muted">
-          Tell me what you want to automate. I'll reply within 24 hours with a
-          clear plan, not a sales pitch.
+          Tell me what you want to automate, or book a call to discuss your project.
         </p>
       </div>
       <div className="grid items-start gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
@@ -62,15 +63,15 @@ export function ContactSection() {
             )}
           </div>
           <p className="mt-4 text-xs text-muted">
-            Response time: within 24 hours.
+            Enquiries are reviewed manually.
           </p>
           <div className="my-9 border-t border-line pt-8">
             <h3 className="mb-6 text-lg font-semibold">What happens next</h3>
             <ol className="space-y-6">
               {[
-                "You send the form. It takes approximately 60 seconds.",
-                "I review your process and reply with a short plan and estimated ROI.",
-                "We book a call and scope the build.",
+                formAvailable ? "Send your enquiry using the form." : "Email me or book a call to share your enquiry.",
+                "I can review your process and discuss the next steps with you.",
+                "If it is a good fit, we can scope the build together.",
               ].map((step, index) => (
                 <li key={step} className="flex gap-4">
                   <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-line bg-white font-mono text-[10px] text-accent">

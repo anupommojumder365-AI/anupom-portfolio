@@ -61,7 +61,8 @@ export function StatisticsSection() {
       </dl>
       <p className="mt-5 text-xs leading-6 text-muted">
         Owner-supplied portfolio-wide figures, separate from the documented
-        project collection.
+        project collection. Timeframe, counting method, and independent evidence
+        have not been supplied.
       </p>
     </section>
   );

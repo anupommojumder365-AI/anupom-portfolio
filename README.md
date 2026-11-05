@@ -24,7 +24,7 @@ When the actual HTTPS production origin is known, set `VITE_SITE_URL` in the pro
 
 Page-specific titles, descriptions, Open Graph, and X metadata are included in the generated HTML files as well as updated on client navigation. The actual page body is client-rendered and requires JavaScript. The social image is `public/social-portrait.jpeg`, a copy of the current portrait; update it if the portrait changes. After deploying in a later phase, verify direct project URLs and reloads, the canonical domain, `robots.txt`, `sitemap.xml`, and social previews on the real host. Test unknown routes too: hosting status behavior is not verified locally.
 
-The contact form uses email fallback until `VITE_CONTACT_WEBHOOK_URL` is configured. Both `VITE_` values are public build-time configuration, never secret storage. Configure and independently secure a real endpoint before enabling submissions. `.gitignore` excludes environment files, build output, test artifacts, and the original project-source folders; only reviewed copies of screenshots in `public/projects` are intended for publishing. Inspect all files staged for GitHub before sharing, including the dashboard screenshots and source images.
+The contact form uses email fallback until the Supabase public URL and publishable key are configured. `VITE_` values are public build-time configuration, never secret storage. `.gitignore` excludes environment files, build output, test artifacts, and the original project-source folders; only reviewed copies of screenshots in `public/projects` are intended for publishing. Inspect all files staged for GitHub before sharing, including the dashboard screenshots and source images.
 
 ## Content and configuration
 
@@ -79,23 +79,13 @@ To add a project, append one typed `Project` record to the existing project data
 
 Add exact HTTP(S) githubUrl and demoUrl values to project data. Demo links appear only with valid URLs and open securely in a new tab. GitHub buttons otherwise show a disabled unavailable state, unless the project sets `hideGithub` (as requested for Sophie). Both scheduling buttons use the supplied Calendly URL in `profile.ts`; removing it restores the unconfigured state. Original project routes continue to work.
 
-## Contact form and n8n
+## Contact form and Supabase
 
-The form has three steps with state held only in memory. It validates choices, project details, name, email and WhatsApp number when selected. Contact data is not logged, put in URLs, persisted in browser storage, or shown publicly. There is no real submission endpoint configured by default.
+The three-step form validates fields and saves enquiries to the `portfolio_contact_submissions` table. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` in `.env.local` for development and in the hosting provider for production. These values are public. Never put a Supabase secret or service-role key in a `VITE_` variable.
 
-The Email me button and other mail links read `profile.email`; the address is intentionally not printed in this README. For contact, use the [GitHub profile](https://github.com/anupommojumder365-AI) or the website's **Email me** button. The adjacent copy button uses the browser clipboard API with accessible success/error feedback. The contact section does not display the address as plain text. Clipboard access requires a secure context such as HTTPS or localhost.
+The table has row-level security and allows anonymous inserts only; anonymous reads, updates and deletes are denied. A request UUID prevents duplicate rows on retry. If a response is lost or a duplicate is rejected, the form asks the visitor to email rather than claiming success. Submissions can be reviewed in the Supabase dashboard. No email notifications are configured.
 
-Copy .env.example to .env.local and set VITE_CONTACT_WEBHOOK_URL to a PUBLIC webhook or submission proxy URL. Restart Vite after changing environment variables. All VITE_ variables are shipped to the browser; never place authentication credentials in them.
-
-The shared submission service in src/lib/contact.ts validates again before POST, uses a timeout, omits cookies, and requires an explicit JSON acknowledgement:
-
-    { "success": true, "requestId": "<same UUID received in request>" }
-
-Only that successful acknowledgement shows the success message. Non-2xx responses, network failures, invalid JSON, negative success flags or a mismatched requestId show errors and retain entries for retry. Only acknowledge after the workflow has durably accepted the enquiry. Failed attempts retain their requestId for safe retry; editing a field creates a new request identity. The server must deduplicate requestId to avoid duplicated delivery after uncertain network responses.
-
-The endpoint must validate lengths and choices independently, restrict CORS to the actual portfolio origin, rate-limit, apply anti-abuse controls, store lead details privately and handle email delivery. A client honeypot is included; it is a UI deterrent, not a substitute for server protections. No delivery to a live n8n workflow has been tested.
-
-The service accepts an optional Turnstile token for a future widget. Render the real widget and forward its token only after the endpoint supports server-side verification. Keep the Turnstile secret and webhook authentication entirely server-side. No fake CAPTCHA or unnecessary backend has been introduced.
+The endpoint accepts public inserts and therefore can receive spam; a honeypot is only a deterrent. Add server-side anti-abuse protection before relying on the form at scale. When the public configuration is absent, the form directs visitors to email instead.
 
 ## Validation
 
@@ -107,7 +97,7 @@ The service accepts an optional Turnstile token for a future widget. Render the 
 
 Playwright starts a production preview on port 4173 and an isolated configured development server on 4174. Configured submissions are intercepted with test fixtures; no real leads are sent. Tests cover filters, dialog focus and Escape, project deep links, Skills navigation, form validation, state persistence, unconfigured delivery, acknowledgement checks, failure/retry paths, and responsive/reduced-motion layouts. Screenshots and failure traces are under ignored test-results.
 
-Tests run in Chromium. Other browsers, actual devices, assistive technology, and live webhook delivery require separate verification. See the final implementation report for the checks actually completed.
+Tests run in Chromium. Other browsers, actual devices, assistive technology, and live database delivery require separate verification. See the final implementation report for the checks actually completed.
 
 The refinement suite also checks all five filters, the real avatar, secure new-tab demo navigation with an intercepted destination, clipboard success and refusal, exact skill order and statistics, existing animations, and responsive layout at 320, 390, 768, 1024 and 1440px. Footer checks assert 32px padding and no blank document area below it. The external voice service and operating-system email application are not exercised.
 

@@ -82,7 +82,7 @@ export function FeaturedProjectCard({
           </p>
         ) : null}
         <p className="mb-6 text-[10px] leading-5 text-muted">
-          Owner-supplied outcomes · supporting evidence pending
+          Owner-supplied claims · measurement method, timeframe, and supporting evidence pending
         </p>
         <div className="mt-auto flex flex-wrap items-center gap-3">
           <button

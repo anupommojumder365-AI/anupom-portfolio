@@ -155,8 +155,9 @@ export function CaseStudyContent({
             <p className="mb-4 text-xs text-muted">
               The following claims were supplied by the portfolio owner. They
               have not been independently verified; supporting evidence is
-              pending.
+              pending. The measurement method and collection period are not supplied.
             </p>
+            {project.slug === "ai-voice-receptionist" ? <p className="mb-4 text-xs text-muted">These claims concern broader voice automation work and have not been linked to this dental demo.</p> : null}
             <ul className="space-y-2">
               {project.metrics.map((metric) => (
                 <li key={metric.label}>

@@ -199,15 +199,14 @@ test("configured form requires an explicit acknowledgement and blocks duplicate 
   const acknowledgement = new Promise<void>((resolve) => {
     release = resolve;
   });
-  await page.route("**/api/enquiry", async (route) => {
+  await page.route("**/rest/v1/portfolio_contact_submissions", async (route) => {
     requests++;
     const payload = route.request().postDataJSON();
     expect(payload.name).toBe("Test Visitor");
     expect(payload.websiteTrap).toBeUndefined();
     await acknowledgement;
-    await route.fulfill({
-      json: { success: true, requestId: payload.requestId },
-    });
+    expect(payload.request_id).toBeTruthy();
+    await route.fulfill({ status: 201, body: "" });
   });
   await page.goto("http://127.0.0.1:4174/#contact");
   const form = await completeProjectAndScope(page);
@@ -276,14 +275,11 @@ test("unconfirmed response and network failure retain entries and allow retry", 
   page,
 }) => {
   let requests = 0;
-  await page.route("**/api/enquiry", async (route) => {
+  await page.route("**/rest/v1/portfolio_contact_submissions", async (route) => {
     requests++;
     if (requests === 1)
-      await route.fulfill({
-        contentType: "text/html",
-        body: "<html>Not an acknowledgement</html>",
-      });
-    else if (requests === 2) await route.fulfill({ json: { success: false } });
+      await route.fulfill({ status: 409, body: "duplicate" });
+    else if (requests === 2) await route.fulfill({ status: 500, body: "error" });
     else await route.abort("failed");
   });
   await page.goto("http://127.0.0.1:4174/#contact");
@@ -292,13 +288,13 @@ test("unconfirmed response and network failure retain entries and allow retry", 
   await form.getByLabel("Work Email").fill("visitor@example.test");
   await form.getByRole("button", { name: "Send Request" }).click();
   await expect(form.getByRole("alert")).toContainText(
-    "Delivery was not confirmed",
+    "The request could not be confirmed",
   );
   await expect(page.getByText(/Your request is in/)).toHaveCount(0);
   await expect(form.getByLabel("Full Name")).toHaveValue("Test Visitor");
   await form.getByRole("button", { name: "Send Request" }).click();
   await expect(form.getByRole("alert")).toContainText(
-    "Delivery was not confirmed",
+    "The request could not be confirmed",
   );
   await form.getByRole("button", { name: "Send Request" }).click();
   await expect(form.getByRole("alert")).toContainText(

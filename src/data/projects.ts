@@ -148,12 +148,12 @@ Object.assign(
     githubUrl:
       "https://github.com/anupommojumder365-AI/lunatic-dental-ai-receptionist",
     shortDescription:
-      "Inbound and outbound voice agents that handle calls, book appointments, and trigger follow-ups without a human on the line.",
-    technologies: ["Retell AI", "Bland AI", "OpenAI API", "Make", "Webhooks"],
+      "A dental receptionist demo with an ElevenLabs voice agent, live transcript, and synchronized Simli avatar.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "ElevenLabs", "Simli"],
     problem:
       "Manual call handling and follow-up create a need for a more consistent way to handle enquiries and appointment requests.",
     solution:
-      "The supplied project description covers inbound and outbound voice agents that handle calls, book appointments, and trigger follow-ups.",
+      "The linked repository describes a voice conversation demo. Appointment requests are simulated; it does not create real bookings or include a booking integration.",
     architectureDescription:
       "Owner-supplied application architecture: Next.js, TypeScript, and Tailwind CSS, with source maintained on GitHub and deployment managed through Vercel. An ElevenLabs voice agent and Simli avatar coordinate audio and video during the conversation.",
     architectureFlow: [
@@ -200,7 +200,8 @@ Object.assign(
       },
     ],
     businessValue:
-      "The supplied metrics describe call volume, CRM transcript logging, and reduced tele-calling workload; independent supporting evidence is pending.",
+      "The demo illustrates a voice-first interface and avatar synchronization. The linked repository does not establish production call volume, CRM logging, or workload savings.",
+    supportingNote: "The figures below were supplied for broader voice automation work; their connection to this demo and supporting evidence have not been verified.",
     metrics: suppliedMetrics([
       ["100+", "calls handled per week"],
       ["100%", "of transcripts logged to the CRM"],

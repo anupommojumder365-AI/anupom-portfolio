@@ -8,6 +8,7 @@ export const profile: {
   name: "Anupom Mojumder",
   email: "anupommojumdernew@gmail.com",
   linkedinUrl: "https://linkedin.com/in/anupommojumder",
+  githubUrl: "https://github.com/anupommojumder365-AI",
   schedulingUrl: "https://calendly.com/anupom-mojumder/30min",
 };
 

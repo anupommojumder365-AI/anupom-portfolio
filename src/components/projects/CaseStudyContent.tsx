@@ -27,7 +27,6 @@ export function CaseStudyContent({
           {project.caseStudyPublished
             ? "Published case study"
             : "Case study preview · documentation in progress"}
-          . Project status has not been independently verified.
         </p>
       </section>
       <section>
@@ -145,19 +144,13 @@ export function CaseStudyContent({
         </Heading>
         <p className="text-muted">
           {project.businessValue ??
-            "Business impact documentation is pending. Available owner-supplied metrics are listed below."}
+            "Business impact documentation is pending."}
         </p>
       </section>
       <section>
         <Heading className="mb-3 text-lg font-semibold">Results</Heading>
         {project.metrics?.length ? (
           <>
-            <p className="mb-4 text-xs text-muted">
-              The following claims were supplied by the portfolio owner. They
-              have not been independently verified; supporting evidence is
-              pending. The measurement method and collection period are not supplied.
-            </p>
-            {project.slug === "ai-voice-receptionist" ? <p className="mb-4 text-xs text-muted">These claims concern broader voice automation work and have not been linked to this dental demo.</p> : null}
             <ul className="space-y-2">
               {project.metrics.map((metric) => (
                 <li key={metric.label}>

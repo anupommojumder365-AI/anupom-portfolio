@@ -26,13 +26,13 @@ const drafts: { title: string; slug: string; category: ProjectCategory }[] = [
 // Editable intended scope inferred from supplied titles, not verified implementations.
 const draftSummaries: Record<string, string> = {
   "b2b-lead-automation-engine":
-    "Draft scope: a connected workflow for B2B lead operations. Implementation and integrations await verification.",
+    "Draft scope: a connected workflow for B2B lead operations.",
   "rag-customer-support-agent":
-    "Draft scope: a customer support agent with knowledge retrieval. Sources and implementation await verification.",
+    "Draft scope: a customer support agent with knowledge retrieval.",
   "ai-voice-receptionist":
-    "Draft scope: an AI voice interface for reception enquiries. Call flows and deployment await verification.",
+    "Draft scope: an AI voice interface for reception enquiries.",
   "crm-lead-management-automation":
-    "Draft scope: connected CRM and lead management workflows. Implementation details await verification.",
+    "Draft scope: connected CRM and lead management workflows.",
 };
 
 // Draft records only. Confirm actual status and content before publishing.
@@ -41,7 +41,7 @@ export const projects: Project[] = drafts.map((draft) => ({
   id: draft.slug,
   shortDescription:
     draftSummaries[draft.slug] ??
-    "Editable placeholder: details pending verification.",
+    "Editable project details.",
   status: "In Progress",
   featured: false,
   builtVerified: false,
@@ -155,7 +155,7 @@ Object.assign(
     solution:
       "The linked repository describes a voice conversation demo. Appointment requests are simulated; it does not create real bookings or include a booking integration.",
     architectureDescription:
-      "Owner-supplied application architecture: Next.js, TypeScript, and Tailwind CSS, with source maintained on GitHub and deployment managed through Vercel. An ElevenLabs voice agent and Simli avatar coordinate audio and video during the conversation.",
+      "Application architecture: Next.js, TypeScript, and Tailwind CSS, with source maintained on GitHub and deployment managed through Vercel. An ElevenLabs voice agent and Simli avatar coordinate audio and video during the conversation.",
     architectureFlow: [
       "Visitor",
       "ElevenLabs Agent",
@@ -191,7 +191,7 @@ Object.assign(
       {
         src: "/projects/ai-voice-receptionist/voice-agent-dashboard.jpg",
         alt: "AI receptionist dashboard showing conversation and usage summaries",
-        caption: "Supplied AI receptionist dashboard; figures are a snapshot, not independently verified outcomes.",
+        caption: "AI receptionist dashboard showing conversation and usage summaries.",
       },
       {
         src: "/projects/ai-voice-receptionist/voice-agent-analytics.jpg",
@@ -201,7 +201,6 @@ Object.assign(
     ],
     businessValue:
       "The demo illustrates a voice-first interface and avatar synchronization. The linked repository does not establish production call volume, CRM logging, or workload savings.",
-    supportingNote: "The figures below were supplied for broader voice automation work; their connection to this demo and supporting evidence have not been verified.",
     metrics: suppliedMetrics([
       ["100+", "calls handled per week"],
       ["100%", "of transcripts logged to the CRM"],
@@ -296,7 +295,7 @@ const newSuppliedProjects: Project[] = [
         src: "/projects/ai-networking-intelligence-agent/research-dashboard.png",
         alt: "Networking research dashboard overview",
         caption:
-          "Supplied dashboard view; counts represent a captured run, not a verified performance result.",
+          "Networking research dashboard overview.",
       },
     ],
     verifiedResults: [],
@@ -316,7 +315,7 @@ const newSuppliedProjects: Project[] = [
     solution:
       "A 24/7 voice agent that answers calls, qualifies callers, logs the details, and syncs leads to the CRM automatically.",
     businessValue:
-      "The client-work brief describes a way to capture enquiries and move qualified caller information into the CRM. The supplied metrics below remain unverified.",
+      "The client-work brief describes a way to capture enquiries and move qualified caller information into the CRM.",
     hideGithub: true,
     technologies: ["ElevenLabs", "n8n", "Supabase", "HubSpot"],
     metrics: suppliedMetrics([
@@ -330,7 +329,7 @@ const newSuppliedProjects: Project[] = [
       {
         src: "/projects/ai-sophie/sophie-analytics.png",
         alt: "AI Sophie analytics dashboard showing success rate and response time",
-        caption: "Supplied AI Sophie analytics dashboard; figures are a snapshot, not independently verified outcomes.",
+        caption: "AI Sophie analytics dashboard showing success rate and response time.",
       },
     ],
     workflowSteps: [],

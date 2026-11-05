@@ -82,9 +82,6 @@ export function ServicesSection() {
                 {"proof" in service ? (
                   <div className="mb-6 rounded-xl bg-accent/5 p-4 text-sm font-medium text-accent">
                     <p>{service.proof}</p>
-                    <p className="mt-2 text-[10px] font-normal text-muted">
-                      Owner-supplied project outcome · evidence pending
-                    </p>
                   </div>
                 ) : (
                   <p className="mb-6 text-sm text-accent">

@@ -40,7 +40,7 @@ export function FeaturedProjectCard({
             <Icon size={24} strokeWidth={1.4} aria-hidden="true" />
           </span>
           <span
-            className={`font-mono text-[11px] uppercase tracking-wider ${project.clientWork ? "rounded-md bg-accent/10 px-2.5 py-1 font-semibold text-accent" : "text-muted"}`}
+            className={`font-mono text-[11px] uppercase tracking-wider ${project.clientWork ? "hover-chip rounded-md bg-accent/10 px-2.5 py-1 font-semibold text-accent" : "text-muted"}`}
           >
             {project.clientWork
               ? "Client Work / Voice AI"

@@ -11,7 +11,7 @@ export function FeaturedSkills() {
       {featuredTechnologies.map((technology, index) => (
         <li key={technology}>
           <Reveal delay={index * 0.025}>
-            <div className="surface flex min-h-24 items-center justify-center px-3 py-5 text-center text-sm font-semibold transition-colors hover:border-accent">
+            <div className="hover-chip surface flex min-h-24 items-center justify-center px-3 py-5 text-center text-sm font-semibold transition-colors hover:border-accent">
               {technology}
             </div>
           </Reveal>

@@ -60,7 +60,7 @@ export function CaseStudyContent({
                       →
                     </span>
                   ) : null}
-                  <span className="rounded-lg border border-line bg-white px-3 py-2">
+                  <span className="hover-chip rounded-lg border border-line bg-white px-3 py-2">
                     {step}
                   </span>
                 </li>

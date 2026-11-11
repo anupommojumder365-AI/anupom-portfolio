@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router";
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
+import { RecruiterAssistant } from "../assistant/RecruiterAssistant";
 import { pageSeo, siteOrigin } from "../../lib/seo";
 
 function setMeta(
@@ -87,6 +88,7 @@ export function SiteLayout() {
         <Outlet />
       </main>
       <Footer />
+      <RecruiterAssistant />
     </div>
   );
 }

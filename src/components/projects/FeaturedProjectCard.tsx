@@ -34,10 +34,10 @@ export function FeaturedProjectCard({
     <Spotlight
       className={`surface h-full ${project.clientWork ? "border-accent/30 bg-[#f1f5ef]" : ""}`}
     >
-      <article className="flex h-full flex-col p-6 sm:p-8">
-        <div className="mb-7 flex items-start justify-between gap-4">
-          <span className="flex size-12 items-center justify-center rounded-xl border border-line bg-white text-accent">
-            <Icon size={24} strokeWidth={1.4} aria-hidden="true" />
+      <article className="flex h-full min-w-0 flex-col p-5 sm:p-6">
+        <div className="mb-5 flex items-start justify-between gap-3">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-line bg-white text-accent">
+            <Icon size={20} strokeWidth={1.4} aria-hidden="true" />
           </span>
           <span
             className={`font-mono text-[11px] uppercase tracking-wider ${project.clientWork ? "hover-chip rounded-md bg-accent/10 px-2.5 py-1 font-semibold text-accent" : "text-muted"}`}
@@ -47,26 +47,26 @@ export function FeaturedProjectCard({
               : `Selected / 0${index + 1}`}
           </span>
         </div>
-        <Heading className="mb-3 text-2xl font-semibold leading-tight tracking-tight">
+        <Heading className="mb-3 text-xl font-semibold leading-tight tracking-tight">
           {project.title}
         </Heading>
-        <p className="mb-5 text-sm leading-7 text-muted">
+        <p className="mb-4 text-[1rem] leading-7 text-muted">
           {project.shortDescription}
         </p>
-        <div className="mb-7 flex flex-wrap gap-1.5">
+        <div className="mb-5 flex flex-wrap gap-1.5">
           {project.technologies.map((technology) => (
             <Badge key={technology}>{technology}</Badge>
           ))}
         </div>
         {project.metrics?.length ? (
-          <dl className="mb-5 grid grid-cols-2 gap-5 border-y border-line py-5 sm:grid-cols-3">
+          <dl className="mb-4 grid grid-cols-[repeat(auto-fit,minmax(85px,1fr))] gap-x-3 gap-y-4 border-y border-line py-4">
             {project.metrics.map((metric) => (
-              <div key={metric.label}>
+              <div key={metric.label} className="min-w-0">
                 <dt className="sr-only">{metric.label}</dt>
                 <dd>
                   <AnimatedCounter
                     value={metric.value}
-                    className="block text-2xl font-semibold tracking-tight"
+                    className="block text-lg font-semibold leading-tight tracking-tight"
                   />
                   <span className="mt-1 block text-[11px] leading-5 text-muted">
                     {metric.label}
@@ -81,11 +81,11 @@ export function FeaturedProjectCard({
             {project.supportingNote}
           </p>
         ) : null}
-        <div className="mt-auto flex flex-wrap items-center gap-3">
+        <div className="mt-auto flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={() => onOpen(project)}
-            className="button button-primary"
+            className="button button-primary px-3 text-[0.95rem]"
           >
             View Case Study
             <ArrowUpRight size={15} aria-hidden="true" />
@@ -95,7 +95,7 @@ export function FeaturedProjectCard({
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="button button-secondary"
+              className="button button-secondary px-3 text-[0.95rem]"
             >
               <GitBranch size={15} aria-hidden="true" />
               GitHub
@@ -104,7 +104,7 @@ export function FeaturedProjectCard({
             <button
               type="button"
               disabled
-              className="button button-secondary cursor-not-allowed! opacity-55"
+              className="button button-secondary cursor-not-allowed! px-3 text-[0.95rem] opacity-55"
               aria-label={`GitHub unavailable for ${project.title}`}
             >
               <GitBranch size={15} aria-hidden="true" />
@@ -116,7 +116,7 @@ export function FeaturedProjectCard({
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="button button-secondary"
+              className="button button-secondary px-3 text-[0.95rem]"
             >
               Try Live Demo
               <ExternalLink size={15} aria-hidden="true" />

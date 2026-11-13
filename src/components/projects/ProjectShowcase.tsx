@@ -47,7 +47,7 @@ export function ProjectShowcase({
           ? "1 live agent demo shown"
           : `${visible.length} featured projects shown`}
       </p>
-      <m.div layout className="grid grid-cols-1 gap-5 lg:grid-cols-5">
+      <m.div layout className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3">
         <AnimatePresence initial={false}>
           {filter === demoFilter ? (
             <m.div
@@ -57,7 +57,7 @@ export function ProjectShowcase({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: reduced ? 0 : 0.2 }}
-              className="lg:col-span-5"
+              className="w-full max-w-3xl justify-self-center md:col-span-2 xl:col-span-3"
             >
               <Reveal>
                 <AgentDemoCard headingLevel={headingLevel} />
@@ -73,9 +73,9 @@ export function ProjectShowcase({
               exit={{ opacity: 0 }}
               transition={{ duration: reduced ? 0 : 0.2 }}
               className={
-                project.featuredSize === "large"
-                  ? "lg:col-span-3"
-                  : "lg:col-span-2"
+                visible.length > 3 && visible.length % 3 === 1 && index === visible.length - 1
+                  ? "xl:col-start-2"
+                  : undefined
               }
             >
               <Reveal delay={index * 0.05} className="h-full">

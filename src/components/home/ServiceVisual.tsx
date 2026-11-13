@@ -13,7 +13,7 @@ export function ServiceVisual({
   return (
     <div
       ref={ref}
-      className="service-visual my-5 flex h-20 items-center"
+      className="service-visual my-3 flex h-16 items-center"
       data-active={visible}
       aria-hidden="true"
     >
@@ -47,11 +47,11 @@ export function ServiceVisual({
           ))}
         </div>
       ) : kind === "rag" ? (
-        <div className="flex items-center gap-4 text-accent">
-          <FileSearch size={30} strokeWidth={1.3} />
+        <div className="flex min-w-0 items-center gap-2 text-accent">
+          <FileSearch size={26} strokeWidth={1.3} />
           <span className="text-line">→</span>
-          <div>
-            <p className="retrieval-text w-fit overflow-hidden whitespace-nowrap border-r border-accent pr-2 font-mono text-[11px]">
+          <div className="min-w-0">
+            <p className="retrieval-text w-fit overflow-hidden whitespace-nowrap border-r border-accent pr-2 font-mono text-[10px]">
               Retrieving context…
             </p>
             <p className="mt-2 text-[10px] text-muted">

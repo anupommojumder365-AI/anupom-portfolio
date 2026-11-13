@@ -12,9 +12,9 @@ export function AgentDemoCard({
   const [imageFailed, setImageFailed] = useState(false);
   return (
     <Spotlight className="surface h-full">
-      <article className="flex flex-col gap-7 p-6 sm:flex-row sm:items-center sm:p-8">
+      <article className="flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:p-6">
         {imageFailed ? (
-          <div className="flex aspect-square w-full max-w-64 shrink-0 items-center justify-center rounded-xl border border-dashed border-line bg-surface-raised p-5 text-center text-sm text-muted">
+          <div className="flex aspect-square w-full max-w-48 shrink-0 items-center justify-center rounded-xl border border-dashed border-line bg-surface-raised p-5 text-center text-sm text-muted">
             Avatar unavailable — add the supplied avater image.
           </div>
         ) : (
@@ -25,7 +25,7 @@ export function AgentDemoCard({
             height={agentDemo.avatarHeight}
             loading="lazy"
             onError={() => setImageFailed(true)}
-            className="w-full max-w-64 shrink-0 rounded-xl border border-line object-contain sm:w-64"
+            className="w-full max-w-48 shrink-0 rounded-xl border border-line object-contain sm:w-48"
           />
         )}
         <div>

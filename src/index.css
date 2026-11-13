@@ -8,7 +8,7 @@
   --color-surface-raised: #f2f1ec;
   --color-line: #e7e5df;
   --color-ink: #111214;
-  --color-muted: #6b6f76;
+  --color-muted: #5f656b;
   --color-accent: #1f6f4a;
   --color-secondary: #e8ecff;
   /* Scale existing text sizes by 20%; retain the root size and hero clamp. */
@@ -70,7 +70,7 @@
 }
 @layer components {
   .home-section {
-    @apply border-t border-line py-20 sm:py-28;
+    @apply border-t border-line py-16 sm:py-24;
   }
   .container-shell {
     @apply mx-auto w-full max-w-7xl px-5 sm:px-10 lg:px-14;

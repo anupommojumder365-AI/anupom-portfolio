@@ -49,20 +49,14 @@ export function ServicesSection() {
       >
         Four ways I help businesses automate, scale, and save time.
       </SectionHeading>
-      <div className="grid gap-5 lg:grid-cols-6">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {services.map((service, index) => (
           <Reveal
             key={service.kind}
             delay={index * 0.05}
-            className={
-              index < 2
-                ? "lg:col-span-3"
-                : index === 2
-                  ? "lg:col-span-2"
-                  : "lg:col-span-4"
-            }
+            className="h-full min-w-0"
           >
-            <Spotlight className="service-card surface h-full p-6 sm:p-8">
+            <Spotlight className="service-card surface h-full p-5 sm:p-6">
               <article className="flex h-full flex-col">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[10px] text-muted">
@@ -73,23 +67,23 @@ export function ServicesSection() {
                   </span>
                 </div>
                 <ServiceVisual kind={service.kind} />
-                <h3 className="mb-3 text-2xl font-semibold leading-tight tracking-tight">
+                <h3 className="mb-3 text-xl font-semibold leading-tight tracking-tight">
                   {service.title}
                 </h3>
-                <p className="mb-5 text-sm leading-7 text-muted">
+                <p className="mb-4 text-[1rem] leading-7 text-muted">
                   {service.description}
                 </p>
                 {"proof" in service ? (
-                  <div className="mb-6 rounded-xl bg-accent/5 p-4 text-sm font-medium text-accent">
+                  <div className="mb-5 rounded-xl bg-accent/5 p-3 text-[0.95rem] leading-6 font-medium text-accent">
                     <p>{service.proof}</p>
                   </div>
                 ) : (
-                  <p className="mb-6 text-sm text-accent">
+                  <p className="mb-5 text-[0.95rem] leading-6 text-accent">
                     {"context" in service ? service.context : ""}
                   </p>
                 )}
-                <div className="service-details mt-auto border-t border-line pt-5">
-                  <div className="mb-4 flex flex-wrap gap-1.5">
+                <div className="service-details mt-auto border-t border-line pt-4">
+                  <div className="mb-3 flex flex-wrap gap-1.5">
                     {service.technologies.map((technology) => (
                       <Badge key={technology}>{technology}</Badge>
                     ))}

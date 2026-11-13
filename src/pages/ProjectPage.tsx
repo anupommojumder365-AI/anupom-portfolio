@@ -15,7 +15,7 @@ export function ProjectsPage() {
         label="Portfolio / Documented work"
         title="Selected Work"
       >
-        Explore supplied project summaries and preview their case studies.
+        Explore projects, workflows, and case studies across AI and automation.
       </SectionHeading>
       <ProjectShowcase headingLevel="h2" />
     </>

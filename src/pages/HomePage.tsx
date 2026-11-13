@@ -21,7 +21,7 @@ export function HomePage() {
         className="home-section"
       >
         <SectionHeading label="03 / Featured Projects" title="Selected Work">
-          Production AI systems, built to cut manual effort and scale.
+          Explore AI agents and workflows built to address real business needs.
         </SectionHeading>
         <ProjectShowcase />
       </section>

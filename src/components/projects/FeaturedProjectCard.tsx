@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   ArrowUpRight,
   ExternalLink,
@@ -24,6 +25,8 @@ export function FeaturedProjectCard({
   headingLevel?: "h2" | "h3";
 }) {
   const Heading = headingLevel;
+  const [previewFailed, setPreviewFailed] = useState(false);
+  const preview = project.screenshots[0];
   const Icon =
     project.showcaseGroup === "Voice AI"
       ? Mic
@@ -39,13 +42,16 @@ export function FeaturedProjectCard({
           <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-line bg-white text-accent">
             <Icon size={20} strokeWidth={1.4} aria-hidden="true" />
           </span>
-          <span
-            className={`font-mono text-[11px] uppercase tracking-wider ${project.clientWork ? "hover-chip rounded-md bg-accent/10 px-2.5 py-1 font-semibold text-accent" : "text-muted"}`}
-          >
-            {project.clientWork
-              ? "Client Work / Voice AI"
-              : `Selected / 0${index + 1}`}
-          </span>
+          <div className="flex min-w-0 items-start justify-end gap-2">
+            <span
+              className={`text-right font-mono text-[11px] uppercase tracking-wider ${project.clientWork ? "hover-chip rounded-md bg-accent/10 px-2.5 py-1 font-semibold text-accent" : "text-muted"}`}
+            >
+              {project.clientWork ? "Client Work / Voice AI" : `Selected / 0${index + 1}`}
+            </span>
+            {preview && !previewFailed ? (
+              <img src={preview.src} alt={preview.alt} loading="lazy" decoding="async" onError={() => setPreviewFailed(true)} className="h-14 w-20 shrink-0 rounded-lg border border-line bg-surface-raised object-contain sm:w-24" />
+            ) : null}
+          </div>
         </div>
         <Heading className="mb-2 text-xl font-semibold leading-tight tracking-tight">
           {project.title}

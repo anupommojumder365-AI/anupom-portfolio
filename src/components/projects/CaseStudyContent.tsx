@@ -40,37 +40,6 @@ export function CaseStudyContent({
       </section>
       <section>
         <Heading className="mb-3 text-lg font-semibold">
-          Workflow Architecture
-        </Heading>
-        <div className="rounded-xl border border-dashed border-line bg-surface-raised p-7 text-center">
-          <Workflow className="mx-auto mb-3 text-accent" aria-hidden="true" />
-          <p className="text-muted">
-            {project.architectureDescription ??
-              "Architecture diagram placeholder — actual workflow asset to be supplied."}
-          </p>
-          {project.architectureFlow?.length ? (
-            <ol
-              aria-label="Workflow architecture and data flow"
-              className="mt-5 flex flex-wrap items-center justify-center gap-2 text-sm"
-            >
-              {project.architectureFlow.map((step, index) => (
-                <li key={step} className="flex items-center gap-2">
-                  {index > 0 ? (
-                    <span aria-hidden="true" className="text-accent">
-                      →
-                    </span>
-                  ) : null}
-                  <span className="hover-chip rounded-lg border border-line bg-white px-3 py-2">
-                    {step}
-                  </span>
-                </li>
-              ))}
-            </ol>
-          ) : null}
-        </div>
-      </section>
-      <section>
-        <Heading className="mb-3 text-lg font-semibold">
           Solution and Approach
         </Heading>
         <p className="text-muted">
@@ -79,64 +48,6 @@ export function CaseStudyContent({
         {project.supportingNote ? (
           <p className="mt-3 text-accent">{project.supportingNote}</p>
         ) : null}
-      </section>
-      <section>
-        <Heading className="mb-3 text-lg font-semibold">Workflow Steps</Heading>
-        {project.workflowSteps.length ? (
-          <ol className="list-decimal space-y-3 pl-5">
-            {project.workflowSteps.map((step) => (
-              <li key={step.title}>
-                <strong>{step.title}</strong>
-                <p className="text-muted">{step.description}</p>
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <p className="text-muted">
-            Step-by-step implementation will be added when workflow
-            documentation is supplied.
-          </p>
-        )}
-      </section>
-      <section>
-        <Heading className="mb-3 text-lg font-semibold">Technologies</Heading>
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.length ? (
-            project.technologies.map((technology) => (
-              <Badge key={technology}>{technology}</Badge>
-            ))
-          ) : (
-            <p className="text-muted">Technology stack pending.</p>
-          )}
-        </div>
-      </section>
-      <section>
-        <Heading className="mb-3 text-lg font-semibold">
-          Challenges and Solutions
-        </Heading>
-        {project.challenges.length ? (
-          <dl className="space-y-4">
-            {project.challenges.map((entry) => (
-              <div key={entry.challenge}>
-                <dt className="font-semibold">{entry.challenge}</dt>
-                <dd className="mt-1 text-muted">{entry.solution}</dd>
-              </div>
-            ))}
-          </dl>
-        ) : (
-          <p className="text-muted">
-            Challenge and resolution details have not yet been supplied.
-          </p>
-        )}
-      </section>
-      <section>
-        <Heading className="mb-3 text-lg font-semibold">
-          Reliability and Error Handling
-        </Heading>
-        <p className="text-muted">
-          {project.reliability ??
-            "Reliability and error-handling documentation has not yet been supplied."}
-        </p>
       </section>
       <section>
         <Heading className="mb-3 text-lg font-semibold">
@@ -172,6 +83,95 @@ export function CaseStudyContent({
             ))}
           </ul>
         ) : null}
+      </section>
+      <section>
+        <Heading className="mb-3 text-lg font-semibold">Technologies</Heading>
+        <div className="flex flex-wrap gap-2">
+          {project.technologies.length ? (
+            project.technologies.map((technology) => (
+              <Badge key={technology}>{technology}</Badge>
+            ))
+          ) : (
+            <p className="text-muted">Technology stack pending.</p>
+          )}
+        </div>
+      </section>
+      <section>
+        <Heading className="mb-3 text-lg font-semibold">
+          Workflow Architecture
+        </Heading>
+        <div className="rounded-xl border border-dashed border-line bg-surface-raised p-7 text-center">
+          <Workflow className="mx-auto mb-3 text-accent" aria-hidden="true" />
+          <p className="text-muted">
+            {project.architectureDescription ??
+              "Architecture diagram placeholder — actual workflow asset to be supplied."}
+          </p>
+          {project.architectureFlow?.length ? (
+            <ol
+              aria-label="Workflow architecture and data flow"
+              className="mt-5 flex flex-wrap items-center justify-center gap-2 text-sm"
+            >
+              {project.architectureFlow.map((step, index) => (
+                <li key={step} className="flex items-center gap-2">
+                  {index > 0 ? (
+                    <span aria-hidden="true" className="text-accent">
+                      →
+                    </span>
+                  ) : null}
+                  <span className="hover-chip rounded-lg border border-line bg-white px-3 py-2">
+                    {step}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          ) : null}
+        </div>
+      </section>
+      <section>
+        <Heading className="mb-3 text-lg font-semibold">Workflow Steps</Heading>
+        {project.workflowSteps.length ? (
+          <ol className="list-decimal space-y-3 pl-5">
+            {project.workflowSteps.map((step) => (
+              <li key={step.title}>
+                <strong>{step.title}</strong>
+                <p className="text-muted">{step.description}</p>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p className="text-muted">
+            Step-by-step implementation will be added when workflow
+            documentation is supplied.
+          </p>
+        )}
+      </section>
+      <section>
+        <Heading className="mb-3 text-lg font-semibold">
+          Challenges and Solutions
+        </Heading>
+        {project.challenges.length ? (
+          <dl className="space-y-4">
+            {project.challenges.map((entry) => (
+              <div key={entry.challenge}>
+                <dt className="font-semibold">{entry.challenge}</dt>
+                <dd className="mt-1 text-muted">{entry.solution}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : (
+          <p className="text-muted">
+            Challenge and resolution details have not yet been supplied.
+          </p>
+        )}
+      </section>
+      <section>
+        <Heading className="mb-3 text-lg font-semibold">
+          Reliability and Error Handling
+        </Heading>
+        <p className="text-muted">
+          {project.reliability ??
+            "Reliability and error-handling documentation has not yet been supplied."}
+        </p>
       </section>
       <section>
         <Heading className="mb-3 text-lg font-semibold">

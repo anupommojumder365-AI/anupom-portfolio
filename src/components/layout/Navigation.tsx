@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link, NavLink } from "react-router";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { profile } from "../../data/profile";
 
 export function Navigation() {
@@ -75,7 +75,7 @@ export function Navigation() {
             className="button button-primary lg:ml-3"
             onClick={close}
           >
-            Let’s talk ↗
+            Let’s talk <ArrowUpRight size={16} aria-hidden="true" />
           </a>
         </nav>
       </div>

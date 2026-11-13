@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Phone } from "lucide-react";
 import { AutomationVisual } from "../layout/AutomationVisual";
 import { Reveal } from "../ui/Reveal";
 import { aboutParagraphs, profile } from "../../data/profile";
@@ -30,8 +30,8 @@ export function HeroSection() {
           </span>
         </h1>
         <p className="mt-7 max-w-lg text-base leading-8 text-muted sm:text-lg">
-          I architect AI agents and end-to-end automation that lower costs,
-          remove bottlenecks, and scale on demand.
+          I build AI agents, voice assistants, RAG systems, and connected
+          workflows to help businesses reduce manual work and streamline operations.
         </p>
         <div className="mt-9 flex flex-wrap gap-3">
           <a href="#featured-projects" className="button button-primary">
@@ -43,6 +43,9 @@ export function HeroSection() {
             <ArrowUpRight size={17} aria-hidden="true" />
           </a>
         </div>
+        <button type="button" aria-label="Ask About Anupom — recruiter assistant" onClick={() => window.dispatchEvent(new Event("open-recruiter-assistant"))} className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-accent">
+          <Phone size={16} aria-hidden="true" /> Ask About Anupom
+        </button>
         <p className="mt-10 flex items-center gap-3 text-xs text-muted">
           <span
             className="size-1.5 rounded-full bg-accent"

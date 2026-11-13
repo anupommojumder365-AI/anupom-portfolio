@@ -8,7 +8,7 @@ import { Reveal } from "../ui/Reveal";
 import { AgentDemoCard } from "./AgentDemoCard";
 
 const CaseStudyDrawer = lazy(() => import("./CaseStudyDrawer"));
-const demoFilter = "Talk with one of my agents";
+const demoFilter = "Agent Demos";
 const filters = ["All", "Lead Gen", "Voice AI", "Agents", demoFilter] as const;
 
 export function ProjectShowcase({
@@ -76,7 +76,7 @@ export function ProjectShowcase({
               exit={{ opacity: 0 }}
               transition={{ duration: reduced ? 0 : 0.2 }}
               className={
-                visible.length > 1 && visible.length % 2 === 1 && index === visible.length - 1
+                visible.length % 2 === 1 && index === visible.length - 1
                   ? "w-full md:col-span-2 md:mx-auto md:max-w-[calc((100%-1rem)/2)]"
                   : undefined
               }

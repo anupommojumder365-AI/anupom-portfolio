@@ -369,7 +369,7 @@ export function ContactForm() {
         </div>
       </fieldset>
       <p className="mt-5 text-xs text-muted">
-        No spam. Your details stay private.
+        Please share only the information needed to discuss your enquiry.
       </p>
       {!endpoint ? (
         <p className="mt-4 rounded-lg bg-surface-raised p-3 text-xs leading-6 text-muted">

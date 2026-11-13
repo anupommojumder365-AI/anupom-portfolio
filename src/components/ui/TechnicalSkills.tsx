@@ -1,6 +1,14 @@
 import { featuredTechnologies, skillGroups } from "../../data/skills";
+import { Link } from "react-router";
+import { ArrowUpRight } from "lucide-react";
 import { Badge } from "./Badge";
 import { Reveal } from "./Reveal";
+
+const relatedProjects: Record<string, string> = {
+  "Voice AI": "ai-voice-receptionist",
+  "Workflow Automation": "b2b-lead-automation-engine",
+  "Backend and Databases": "ai-networking-intelligence-agent",
+};
 
 export function FeaturedSkills() {
   return (
@@ -31,7 +39,7 @@ export function GroupedSkills({
 }) {
   const Heading = headingLevel;
   return (
-    <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid items-start gap-3 md:grid-cols-2 lg:grid-cols-3">
       {skillGroups.map((group, index) => (
         <section
           key={group.name}
@@ -41,13 +49,20 @@ export function GroupedSkills({
             <p className="eyebrow mb-2">0{index + 1}</p>
             <Heading className="mb-4 text-lg font-semibold leading-tight">{group.name}</Heading>
           </div>
-          <ul className="flex flex-wrap gap-2">
-            {group.skills.map((skill) => (
-              <li key={skill}>
-                <Badge>{skill}</Badge>
-              </li>
-            ))}
-          </ul>
+          <div>
+            <ul className="flex flex-wrap gap-2">
+              {group.skills.map((skill) => (
+                <li key={skill}>
+                  <Badge>{skill}</Badge>
+                </li>
+              ))}
+            </ul>
+            {relatedProjects[group.name] ? (
+              <Link to={`/projects/${relatedProjects[group.name]}`} aria-label={`View related project for ${group.name}`} className="mt-3 inline-flex min-h-11 items-center gap-1 text-xs font-semibold text-accent">
+                View related project <ArrowUpRight size={15} aria-hidden="true" />
+              </Link>
+            ) : null}
+          </div>
         </section>
       ))}
     </div>

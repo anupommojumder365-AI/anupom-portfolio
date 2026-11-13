@@ -10,6 +10,7 @@ export function RecruiterAssistant() {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState<CallState>("idle");
   const [hasSession, setHasSession] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
   const [message, setMessage] = useState("Start a conversation to ask about Anupom.");
   const launcher = useRef<HTMLButtonElement>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
@@ -48,6 +49,12 @@ export function RecruiterAssistant() {
   }, [open]);
 
   useEffect(() => () => { void end(); }, []);
+
+  useEffect(() => {
+    const openAssistant = () => setOpen(true);
+    window.addEventListener("open-recruiter-assistant", openAssistant);
+    return () => window.removeEventListener("open-recruiter-assistant", openAssistant);
+  }, []);
 
   const start = async () => {
     if (starting.current || session.current) return;
@@ -130,7 +137,11 @@ export function RecruiterAssistant() {
             <button ref={closeButton} type="button" className="recruiter-close" onClick={close} aria-label="Close assistant"><X size={20} /></button>
           </header>
           <div className="recruiter-panel-body">
-            <img src="/assistant/jacks.jpg" alt="Illustration of a voice assistant" className="recruiter-art" />
+            {imageFailed ? (
+              <div className="recruiter-art-fallback" aria-label="Voice assistant illustration unavailable"><Bot size={28} aria-hidden="true" /></div>
+            ) : (
+              <img src="/assistant/jacks.jpg" alt="Illustration of a voice assistant" className="recruiter-art" onError={() => setImageFailed(true)} />
+            )}
             <p className="recruiter-intro">Ask Jacks about Anupom’s skills, projects and availability.</p>
             <p className="recruiter-status" role="status" aria-live="polite">{message}</p>
             {state === "idle" || (state === "error" && !hasSession) ? (

@@ -72,7 +72,7 @@ test("five filters preserve existing cards and isolate the real avatar demo", as
     "Lead Gen",
     "Voice AI",
     "Agents",
-    "Talk with one of my agents",
+    "Agent Demos",
   ]);
   for (const [filter, count] of [
     ["Lead Gen", 1],
@@ -87,7 +87,7 @@ test("five filters preserve existing cards and isolate the real avatar demo", as
     ).toHaveCount(0);
   }
   await filters
-    .getByRole("button", { name: "Talk with one of my agents" })
+    .getByRole("button", { name: "Agent Demos" })
     .click();
   await expect(work.locator("article")).toHaveCount(1);
   const avatar = work.getByRole("img", {
@@ -217,7 +217,7 @@ for (const width of [320, 390, 768, 1024, 1440]) {
       exact: true,
     });
     await work
-      .getByRole("button", { name: "Talk with one of my agents" })
+      .getByRole("button", { name: "Agent Demos" })
       .click();
     await expect(
       work.getByRole("link", { name: "Talk with me" }),

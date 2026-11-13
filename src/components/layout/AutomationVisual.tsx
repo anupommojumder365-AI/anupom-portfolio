@@ -55,13 +55,13 @@ export function AutomationVisual() {
               Reasoning & Tool Calling
             </p>
             <div className="mt-3 flex justify-center gap-1.5">
-              <span className="rounded bg-secondary px-2 py-1 text-[9px]">
+              <span className="rounded bg-secondary px-2 py-1 text-[10px]">
                 Plan
               </span>
-              <span className="rounded bg-surface-raised px-2 py-1 text-[9px]">
+              <span className="rounded bg-surface-raised px-2 py-1 text-[10px]">
                 Execute
               </span>
-              <span className="rounded bg-surface-raised px-2 py-1 text-[9px]">
+              <span className="rounded bg-surface-raised px-2 py-1 text-[10px]">
                 Review
               </span>
             </div>

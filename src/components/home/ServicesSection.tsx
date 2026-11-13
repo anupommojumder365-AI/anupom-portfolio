@@ -90,6 +90,7 @@ export function ServicesSection() {
                   </div>
                   <Link
                     to={`/projects/${service.project}`}
+                    aria-label={`Explore related project for ${service.title}`}
                     className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-accent"
                   >
                     Explore related project

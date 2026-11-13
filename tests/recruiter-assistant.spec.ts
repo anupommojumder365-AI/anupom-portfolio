@@ -1,5 +1,17 @@
 import { expect, test } from "@playwright/test";
 
+test("hero opens the existing assistant and its image has a fallback", async ({ page }) => {
+  await page.route("**/assistant/jacks.jpg", (route) => route.abort());
+  await page.goto("/");
+  await page.getByRole("main").getByRole("button", { name: "Ask About Anupom" }).click();
+  const panel = page.getByRole("dialog", { name: "Ask About Anupom" });
+  await expect(panel).toBeVisible();
+  await expect(panel.getByLabel("Voice assistant illustration unavailable")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(panel).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Ask About Anupom", exact: true }).last()).toBeFocused();
+});
+
 for (const width of [390, 768, 1440]) {
   test(`assistant opens in place and returns focus at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 800 });

@@ -16,7 +16,7 @@ export function SkillsPage() {
         {stackStatement}
       </SectionHeading>
       <FeaturedSkills />
-      <div className="mt-10">
+      <div className="mt-6">
         <GroupedSkills headingLevel="h2" />
       </div>
     </>

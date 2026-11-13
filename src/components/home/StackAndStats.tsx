@@ -20,10 +20,10 @@ export function StackSection() {
         </LinkButton>
       </div>
       <FeaturedSkills />
-      <div className="mt-10">
+      <div className="mt-6">
         <GroupedSkills />
       </div>
-      <p className="mt-8 text-center text-sm leading-7 text-muted">
+      <p className="mt-6 text-center text-sm leading-7 text-muted">
         {stackStatement}
       </p>
     </section>

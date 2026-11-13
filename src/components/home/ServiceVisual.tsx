@@ -13,7 +13,7 @@ export function ServiceVisual({
   return (
     <div
       ref={ref}
-      className="service-visual my-3 flex h-16 items-center"
+      className="service-visual my-2 flex h-14 items-center"
       data-active={visible}
       aria-hidden="true"
     >

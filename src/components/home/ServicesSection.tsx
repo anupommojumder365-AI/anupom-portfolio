@@ -49,7 +49,7 @@ export function ServicesSection() {
       >
         Four ways I help businesses automate, scale, and save time.
       </SectionHeading>
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2">
         {services.map((service, index) => (
           <Reveal
             key={service.kind}

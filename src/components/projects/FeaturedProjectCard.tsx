@@ -35,7 +35,7 @@ export function FeaturedProjectCard({
       className={`surface h-full ${project.clientWork ? "border-accent/30 bg-[#f1f5ef]" : ""}`}
     >
       <article className="flex h-full min-w-0 flex-col p-5 sm:p-6">
-        <div className="mb-5 flex items-start justify-between gap-3">
+        <div className="mb-4 flex items-start justify-between gap-3">
           <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-line bg-white text-accent">
             <Icon size={20} strokeWidth={1.4} aria-hidden="true" />
           </span>
@@ -50,16 +50,16 @@ export function FeaturedProjectCard({
         <Heading className="mb-3 text-xl font-semibold leading-tight tracking-tight">
           {project.title}
         </Heading>
-        <p className="mb-4 text-[1rem] leading-7 text-muted">
+        <p className="mb-4 max-w-prose text-[1rem] leading-7 text-muted">
           {project.shortDescription}
         </p>
-        <div className="mb-5 flex flex-wrap gap-1.5">
+        <div className="mb-4 flex flex-wrap gap-1.5">
           {project.technologies.map((technology) => (
             <Badge key={technology}>{technology}</Badge>
           ))}
         </div>
         {project.metrics?.length ? (
-          <dl className="mb-4 grid grid-cols-[repeat(auto-fit,minmax(85px,1fr))] gap-x-3 gap-y-4 border-y border-line py-4">
+          <dl className="mb-4 grid grid-cols-[repeat(auto-fit,minmax(85px,1fr))] gap-x-4 gap-y-3 border-y border-line py-3">
             {project.metrics.map((metric) => (
               <div key={metric.label} className="min-w-0">
                 <dt className="sr-only">{metric.label}</dt>

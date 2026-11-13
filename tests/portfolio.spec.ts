@@ -248,12 +248,10 @@ test("normal-motion counters finish with correct suffixes and a mobile drawer cl
   });
   const first = work.locator("article").first();
   await first.scrollIntoViewIfNeeded();
-  await expect(
-    first.locator('[aria-hidden="true"]').filter({ hasText: /^500\+$/ }),
-  ).toBeVisible();
   await first.getByRole("button", { name: "View Case Study" }).click();
   const dialog = page.getByRole("dialog");
   await expect(dialog).toBeVisible();
+  await expect(dialog.getByText("500+ leads processed per week", { exact: true })).toBeVisible();
   await expect
     .poll(() =>
       dialog.evaluate((element) =>

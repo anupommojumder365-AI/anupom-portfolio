@@ -1,6 +1,7 @@
 export const services = [
   {
     title: "Voice AI Agents",
+    tagline: "Voice agents for calls and appointment requests.",
     kind: "voice",
     project: "ai-voice-receptionist",
     description:
@@ -10,6 +11,7 @@ export const services = [
   },
   {
     title: "Lead Generation & Sales Automation",
+    tagline: "Find, qualify, and route sales leads.",
     kind: "leads",
     project: "b2b-lead-automation-engine",
     description:
@@ -19,6 +21,7 @@ export const services = [
   },
   {
     title: "RAG & Knowledge Assistants",
+    tagline: "Assistants grounded in your business knowledge.",
     kind: "rag",
     project: "rag-customer-support-agent",
     description:
@@ -28,6 +31,7 @@ export const services = [
   },
   {
     title: "Custom AI Agents & Workflows",
+    tagline: "Purpose-built agents for business processes.",
     kind: "agents",
     project: "ai-networking-intelligence-agent",
     description:

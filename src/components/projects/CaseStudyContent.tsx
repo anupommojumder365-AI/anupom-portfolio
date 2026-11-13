@@ -1,6 +1,7 @@
 import type { Project } from "../../types/project";
 import { Badge } from "../ui/Badge";
 import { ScreenshotGallery } from "./ScreenshotGallery";
+import { services } from "../../data/services";
 
 export function CaseStudyContent({
   project,
@@ -10,6 +11,7 @@ export function CaseStudyContent({
   headingLevel?: "h2" | "h3";
 }) {
   const Heading = headingLevel;
+  const relatedServices = services.filter((service) => service.project === project.slug);
   return (
     <div className="space-y-9 text-sm leading-7">
       <section>
@@ -177,6 +179,14 @@ export function CaseStudyContent({
         </Heading>
         <ScreenshotGallery key={project.id} screenshots={project.screenshots} />
       </section>
+      {relatedServices.map((service) => (
+        <section key={service.kind}>
+          <Heading className="mb-3 text-lg font-semibold">Related service: {service.title}</Heading>
+          <p className="text-muted">{service.description}</p>
+          <p className="mt-3 text-muted">{"proof" in service ? service.proof : service.context}</p>
+          <p className="mt-3 text-muted">Technologies: {service.technologies.join(", ")}.</p>
+        </section>
+      ))}
     </div>
   );
 }

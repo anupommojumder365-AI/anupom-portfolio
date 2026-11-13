@@ -84,7 +84,6 @@ export function ProjectShowcase({
               <Reveal delay={index * 0.05} className="h-full">
                 <FeaturedProjectCard
                   project={project}
-                  index={index}
                   onOpen={setSelected}
                   headingLevel={headingLevel}
                 />

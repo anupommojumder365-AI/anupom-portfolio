@@ -31,7 +31,7 @@ test("supplied scheduling link and project-specific links preserve their intende
     has: page.getByRole("heading", { name: "AI Voice Agent & Call Automation", exact: true }),
   });
   const voiceRepository = "https://github.com/anupommojumder365-AI/lunatic-dental-ai-receptionist";
-  await expect(voiceCard.getByRole("link", { name: "GitHub", exact: true })).toHaveAttribute("href", voiceRepository);
+  await expect(voiceCard.getByRole("link", { name: "GitHub", exact: true })).toHaveCount(0);
   await voiceCard.getByRole("button", { name: "View Case Study" }).click();
   const voiceDrawer = page.getByRole("dialog", { name: "AI Voice Agent & Call Automation" });
   await expect(voiceDrawer.getByRole("link", { name: "GitHub", exact: true })).toHaveAttribute("href", voiceRepository);

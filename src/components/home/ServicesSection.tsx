@@ -2,12 +2,10 @@
 import { Link } from "react-router";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Spotlight } from "../ui/Spotlight";
-import { Badge } from "../ui/Badge";
 import { Reveal } from "../ui/Reveal";
 import { services } from "../../data/services";
 import { profile } from "../../data/profile";
 import { isValidExternalUrl } from "../../lib/projects";
-import { ServiceVisual } from "./ServiceVisual";
 
 export function SchedulingLink({
   label = "Book a Strategy Call",
@@ -58,42 +56,19 @@ export function ServicesSection() {
           >
             <Spotlight className="service-card surface h-full p-5 sm:p-6">
               <article className="flex h-full flex-col">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] text-muted">
-                    SERVICE / 0{index + 1}
-                  </span>
-                </div>
-                <ServiceVisual kind={service.kind} />
                 <h3 className="mb-2 text-xl font-semibold leading-tight tracking-tight">
                   {service.title}
                 </h3>
-                <p className="mb-3 text-[1rem] leading-6 text-muted">
-                  {service.description}
+                <p className="mb-4 text-[1rem] leading-6 text-muted">
+                  {service.tagline}
                 </p>
-                {"proof" in service ? (
-                  <div className="mb-3 text-[0.95rem] leading-6 font-medium text-ink">
-                    <p>{service.proof}</p>
-                  </div>
-                ) : (
-                  <p className="mb-3 text-[0.95rem] leading-6 text-muted">
-                    {"context" in service ? service.context : ""}
-                  </p>
-                )}
-                <div className="service-details mt-auto pt-1">
-                  <div className="-ml-1 mb-2 flex flex-wrap gap-x-3 gap-y-0.5" aria-label="Technologies">
-                    {service.technologies.map((technology) => (
-                      <Badge key={technology}>{technology}</Badge>
-                    ))}
-                  </div>
                   <Link
                     to={`/projects/${service.project}`}
                     aria-label={`Explore related project for ${service.title}`}
-                    className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-accent"
+                    className="mt-auto inline-flex min-h-11 w-fit items-center text-sm font-semibold text-accent"
                   >
-                    Explore related project
-                    <ArrowUpRight size={15} aria-hidden="true" />
+                    Explore Related Project
                   </Link>
-                </div>
               </article>
             </Spotlight>
           </Reveal>

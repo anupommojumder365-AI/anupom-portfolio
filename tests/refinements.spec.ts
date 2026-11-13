@@ -1,5 +1,31 @@
 import { test, expect } from "@playwright/test";
 import { featuredTechnologies, skillGroups } from "../src/data/skills";
+import { services } from "../src/data/services";
+import { projects } from "../src/data/projects";
+
+test("compact cards retain project and service details on their related pages", async ({ page }) => {
+  await page.goto("/");
+  const work = page.getByRole("region", { name: "Featured projects" });
+  for (const project of projects.filter((item) => item.featured)) {
+    const card = work.getByRole("article").filter({ has: page.getByRole("heading", { name: project.title, exact: true }) });
+    await expect(card.locator("p")).toHaveText([project.cardTagline ?? project.shortDescription]);
+    await expect(card.getByRole("button", { name: "View Case Study" })).toHaveCount(1);
+    await expect(card.locator("a, img, svg, dl")).toHaveCount(0);
+  }
+  const region = page.getByRole("region", { name: "Services", exact: true });
+  for (const service of services) {
+    const card = region.getByRole("article").filter({ has: page.getByRole("heading", { name: service.title, exact: true }) });
+    await expect(card.locator("p")).toHaveText([service.tagline]);
+    const link = card.getByRole("link", { name: `Explore related project for ${service.title}` });
+    await expect(link).toHaveAttribute("href", `/projects/${service.project}`);
+    await link.click();
+    await expect(page).toHaveURL(new RegExp(`/projects/${service.project}$`));
+    await expect(page.getByText(service.description, { exact: true })).toBeVisible();
+    await expect(page.getByText("proof" in service ? service.proof : service.context, { exact: true })).toBeVisible();
+    await expect(page.getByText(`Technologies: ${service.technologies.join(", ")}.`, { exact: true })).toBeVisible();
+    await page.goto("/");
+  }
+});
 
 test("core skills, grouped entries, three portfolio figures, and branding", async ({
   page,
@@ -238,7 +264,7 @@ for (const width of [320, 390, 768, 1024, 1440]) {
   });
 }
 
-test("normal-motion hero, reveals, spotlight and service visuals still animate", async ({
+test("normal-motion hero, reveals and spotlight still animate", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
@@ -259,9 +285,7 @@ test("normal-motion hero, reveals, spotlight and service visuals still animate",
     .not.toBe("");
   const services = page.locator("#services");
   await services.scrollIntoViewIfNeeded();
-  await expect(
-    page.locator('.service-visual[data-active="true"]').first(),
-  ).toBeVisible();
+  await expect(page.locator('.service-visual')).toHaveCount(0);
   const card = page.locator(".service-card").first();
   await card.hover();
   await expect

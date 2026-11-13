@@ -68,6 +68,7 @@ Object.assign(
     featured: true,
     featuredSize: "large",
     showcaseGroup: "Lead Gen",
+    cardTagline: "Find, qualify, and route B2B leads.",
     shortDescription:
       "An AI-driven engine that finds, qualifies, and scores B2B leads, then routes them into the CRM with automated follow-ups.",
     technologies: ["n8n", "OpenAI API", "CRM", "Webhooks", "REST APIs"],
@@ -145,6 +146,7 @@ Object.assign(
     title: "AI Voice Agent & Call Automation",
     featured: true,
     showcaseGroup: "Voice AI",
+    cardTagline: "A dental voice demo with a synchronized avatar.",
     githubUrl:
       "https://github.com/anupommojumder365-AI/lunatic-dental-ai-receptionist",
     shortDescription:
@@ -217,6 +219,7 @@ const newSuppliedProjects: Project[] = [
     title: "AI Networking Intelligence Agent",
     category: "AI Agents",
     showcaseGroup: "Agents",
+    cardTagline: "Research and draft outreach for manual review.",
     shortDescription:
       "An on-demand system that discovers relevant professionals and posts, scores them, and drafts personalised connection messages and comments for manual review.",
     technologies: [
@@ -307,6 +310,7 @@ const newSuppliedProjects: Project[] = [
     title: "AI Sophie: AI Call Answering for NCL Marketing Ltd",
     category: "AI Voice Agents",
     showcaseGroup: "Voice AI",
+    cardTagline: "Answer calls and sync qualified enquiries to the CRM.",
     clientWork: true,
     featuredSize: "large",
     shortDescription:

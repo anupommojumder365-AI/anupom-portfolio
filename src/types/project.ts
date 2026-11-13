@@ -20,6 +20,7 @@ export interface Project {
   slug: string;
   title: string;
   shortDescription: string;
+  cardTagline?: string;
   category: ProjectCategory;
   status: ProjectStatus;
   featured: boolean;

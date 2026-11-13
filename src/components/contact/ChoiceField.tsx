@@ -18,20 +18,20 @@ export function ChoiceField({
   const id = useId();
   return (
     <fieldset
-      className="mb-5"
+      className="mb-3"
       aria-describedby={error ? `${id}-error` : undefined}
       aria-invalid={Boolean(error)}
     >
-      <legend className="mb-2 text-sm font-semibold">
+      <legend className="mb-1.5 text-[1rem] font-semibold tracking-tight">
         {label}
         <span className="text-accent" aria-hidden="true">
           {" "}
           *
         </span>
       </legend>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1">
         {options.map((option) => (
-          <label key={option} className="chip">
+          <label key={option} className="chip px-2 py-1.5 text-[1rem]">
             <input
               required
               type="radio"

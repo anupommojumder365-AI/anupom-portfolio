@@ -22,7 +22,7 @@ import type { LeadInput } from "../../lib/contact";
 import { ChoiceField } from "./ChoiceField";
 import { profile } from "../../data/profile";
 
-const stepTitles = ["Project", "Budget & timeline", "Contact"];
+const stepTitles = ["Project", "Scope", "Contact"];
 
 export function ContactForm() {
   const [step, setStep] = useState(0);
@@ -116,8 +116,8 @@ export function ContactForm() {
     type = "text",
     required = false,
   ) => (
-    <div className="mb-4" key={key}>
-      <label htmlFor={`lead-${key}`} className="text-sm font-semibold">
+    <div className={`mb-3 min-w-0 ${key === "company" ? "sm:col-span-2" : ""}`} key={key}>
+      <label htmlFor={`lead-${key}`} className="text-[1rem] font-semibold">
         {label}
         {required ? (
           <span className="text-accent" aria-hidden="true">
@@ -149,7 +149,7 @@ export function ContactForm() {
                 ? 25
                 : 300
         }
-        className="field"
+        className="field min-h-11 py-2 text-[1rem]"
         value={data[key]}
         onChange={(event) => update(key, event.target.value)}
         onBlur={() => touch(key)}
@@ -194,14 +194,14 @@ export function ContactForm() {
       ref={formRef}
       onSubmit={submit}
       noValidate
-      className="surface w-full min-w-0 p-5 sm:p-6"
+      className="surface w-full min-w-0 p-5 lg:w-[74%] lg:max-w-[30rem]"
       aria-label="Project enquiry"
     >
-      <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
-        <p className="text-sm font-semibold">Project enquiry</p>
+      <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+        <p className="text-[1rem] font-semibold">Project enquiry</p>
         <p className="text-xs text-muted">Step {step + 1} of {stepTitles.length}</p>
       </div>
-      <ol className="mb-6 flex gap-2" aria-label="Form progress">
+      <ol className="mb-4 flex gap-2" aria-label="Form progress">
         {stepTitles.map((title, index) => (
           <li
             key={title}
@@ -212,7 +212,7 @@ export function ContactForm() {
               className={`mb-2 block h-1 rounded-full ${index <= step ? "bg-accent" : "bg-line"}`}
             />
             <span
-              className={`text-[10px] sm:text-xs ${index === step ? "font-semibold text-accent" : "text-muted"}`}
+              className={`text-[10px] sm:text-[0.875rem] ${index === step ? "font-semibold text-accent" : "text-muted"}`}
             >
               {index + 1}. {title}
             </span>
@@ -222,7 +222,7 @@ export function ContactForm() {
       <h3
         ref={headingRef}
         tabIndex={-1}
-        className="mb-5 text-lg font-semibold outline-none"
+        className="mb-3 text-base font-semibold outline-none"
       >
         {step === 0
           ? "What are you working on?"
@@ -245,7 +245,7 @@ export function ContactForm() {
                   touch("automation");
                 }}
               />
-              <label htmlFor="lead-details" className="text-sm font-semibold">
+              <label htmlFor="lead-details" className="text-[1rem] font-semibold">
                 Project Details{" "}
                 <span className="text-accent" aria-hidden="true">
                   *
@@ -254,12 +254,12 @@ export function ContactForm() {
               <textarea
                 id="lead-details"
                 name="details"
-                rows={4}
+                rows={2}
                 required
                 minLength={20}
                 maxLength={5000}
-                placeholder="Describe the process, the tools you use, and the problem."
-                className="field resize-y"
+                placeholder="Describe the process and problem."
+                className="field resize-y py-2 text-[1rem]"
                 value={data.details}
                 onChange={(event) => update("details", event.target.value)}
                 onBlur={() => touch("details")}
@@ -267,8 +267,7 @@ export function ContactForm() {
                 aria-describedby="details-help details-error"
               />
               <p id="details-help" className="mt-1 text-xs text-muted">
-                20–5,000 characters. Please leave out passwords and sensitive
-                data.
+                20–5,000 characters. No passwords or sensitive data.
               </p>
               <p id="details-error" className="mt-2 text-xs text-red-700">
                 {showError("details")}
@@ -308,14 +307,14 @@ export function ContactForm() {
               />
             </>
           ) : (
-            <>
+            <div className="grid gap-x-3 sm:grid-cols-2">
               {field("name", "Full Name", "text", true)}
               {field("email", "Work Email", "email", true)}
               {field("company", "Company / Website (optional)")}
               {data.preferredContact === "WhatsApp"
                 ? field("whatsapp", "WhatsApp number", "tel", true)
                 : null}
-            </>
+            </div>
           )}
         </div>
         <div
@@ -332,12 +331,12 @@ export function ContactForm() {
             onChange={(event) => update("websiteTrap", event.target.value)}
           />
         </div>
-        <div className="mt-5 flex justify-between gap-3">
+        <div className="mt-3 flex justify-between gap-3">
           {step > 0 ? (
             <button
               type="button"
               onClick={() => move(step - 1)}
-              className="button button-secondary whitespace-nowrap px-3 text-[1rem]"
+              className="button button-secondary whitespace-nowrap px-3 py-2 text-[1rem]"
             >
               <ArrowLeft size={15} aria-hidden="true" />
               Back
@@ -346,7 +345,7 @@ export function ContactForm() {
             <span />
           )}
           {step < 2 ? (
-            <button type="submit" className="button button-primary whitespace-nowrap px-3 text-[1rem]">
+            <button type="submit" className="button button-primary whitespace-nowrap px-3 py-2 text-[1rem]">
               Continue
               <ArrowRight size={15} aria-hidden="true" />
             </button>
@@ -354,7 +353,7 @@ export function ContactForm() {
             <button
               type="submit"
               disabled={!endpoint || status === "loading"}
-              className="button button-primary whitespace-nowrap px-3 text-[1rem] disabled:cursor-not-allowed disabled:opacity-50"
+              className="button button-primary whitespace-nowrap px-3 py-2 text-[1rem] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {status === "loading" ? (
                 <>
@@ -372,8 +371,8 @@ export function ContactForm() {
           )}
         </div>
       </fieldset>
-      <p className="mt-4 text-xs text-muted">
-        Please share only the information needed to discuss your enquiry.
+      <p className="mt-3 text-xs text-muted">
+        Please share only what’s needed for your enquiry.
       </p>
       {!endpoint ? (
         <p className="mt-4 rounded-lg bg-surface-raised p-3 text-xs leading-6 text-muted">

@@ -4,6 +4,38 @@ import { services } from "../src/data/services";
 import { projects } from "../src/data/projects";
 import { profile } from "../src/data/profile";
 
+test("compact enquiry form preserves WhatsApp fields and responsive controls", async ({ page }) => {
+  for (const width of [320, 1440]) {
+    await page.setViewportSize({ width, height: 850 });
+    await page.goto(`/?viewport=${width}#contact`);
+    const contact = page.locator("#contact");
+    const form = contact.getByRole("form", { name: "Project enquiry" });
+    const left = contact.locator("div.rounded-2xl").first();
+    if (width === 1440) {
+      const [formBox, leftBox] = await Promise.all([form.boundingBox(), left.boundingBox()]);
+      expect(Math.abs(formBox!.width - leftBox!.width)).toBeLessThan(10);
+    }
+    const chip = form.getByText("Voice AI Agent", { exact: true });
+    expect((await chip.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    await chip.click();
+    await form.getByLabel("Project Details").fill("Please help automate reception and appointment requests.");
+    await form.getByRole("button", { name: "Continue" }).click();
+    await form.getByText("Under $500", { exact: true }).click();
+    await form.getByText("1 month", { exact: true }).click();
+    await form.getByText("WhatsApp", { exact: true }).click();
+    await form.getByRole("button", { name: "Continue" }).click();
+    const phone = form.getByLabel("WhatsApp number");
+    await expect(phone).toBeVisible();
+    await phone.focus();
+    await phone.blur();
+    await expect(form.getByText("Enter a WhatsApp number, including country code.")).toBeVisible();
+    await expect(form.getByLabel("Full Name")).toBeVisible();
+    await expect(form.getByLabel("Work Email")).toBeVisible();
+    await expect(form.getByLabel("Company / Website (optional)")).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+});
+
 test("contact options keep their destinations and the form shows its current step", async ({ page }) => {
   await page.goto("/#contact");
   const contact = page.locator("#contact");

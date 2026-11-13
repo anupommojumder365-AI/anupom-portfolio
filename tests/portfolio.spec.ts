@@ -219,7 +219,7 @@ test("configured form requires an explicit acknowledgement and blocks duplicate 
       new Event("submit", { bubbles: true, cancelable: true }),
     ),
   );
-  expect(requests).toBe(1);
+  await expect.poll(() => requests).toBe(1);
   release();
   await expect(
     page.getByText("Thanks, Test Visitor. Your request is in."),

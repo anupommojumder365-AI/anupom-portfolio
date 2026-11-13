@@ -59,7 +59,7 @@ export function ServicesSection() {
             <Spotlight className="service-card surface h-full p-5 sm:p-6">
               <article className="flex h-full flex-col">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] text-muted">
+                  <span className="font-mono text-[11px] text-muted">
                     SERVICE / 0{index + 1}
                   </span>
                   <span className="text-xl text-accent" aria-hidden="true">
@@ -67,22 +67,22 @@ export function ServicesSection() {
                   </span>
                 </div>
                 <ServiceVisual kind={service.kind} />
-                <h3 className="mb-3 text-xl font-semibold leading-tight tracking-tight">
+                <h3 className="mb-2 text-xl font-semibold leading-tight tracking-tight">
                   {service.title}
                 </h3>
-                <p className="mb-4 text-[1rem] leading-7 text-muted">
+                <p className="mb-3 text-[1rem] leading-6 text-muted">
                   {service.description}
                 </p>
                 {"proof" in service ? (
-                  <div className="mb-5 rounded-xl bg-accent/5 p-3 text-[0.95rem] leading-6 font-medium text-accent">
+                  <div className="mb-3 rounded-xl bg-accent/5 px-3 py-2 text-[0.95rem] leading-6 font-medium text-accent">
                     <p>{service.proof}</p>
                   </div>
                 ) : (
-                  <p className="mb-5 text-[0.95rem] leading-6 text-accent">
+                  <p className="mb-3 text-[0.95rem] leading-6 text-accent">
                     {"context" in service ? service.context : ""}
                   </p>
                 )}
-                <div className="service-details mt-auto border-t border-line pt-4">
+                <div className="service-details mt-auto border-t border-line pt-3">
                   <div className="mb-3 flex flex-wrap gap-1.5">
                     {service.technologies.map((technology) => (
                       <Badge key={technology}>{technology}</Badge>

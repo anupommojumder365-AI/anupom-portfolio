@@ -3,7 +3,7 @@ import { SectionHeading } from "../ui/SectionHeading";
 import { LinkButton } from "../ui/LinkButton";
 import { Reveal } from "../ui/Reveal";
 import { AnimatedCounter } from "../ui/AnimatedCounter";
-import { FeaturedSkills, GroupedSkills } from "../ui/TechnicalSkills";
+import { FeaturedSkills } from "../ui/TechnicalSkills";
 import { stackStatement } from "../../data/skills";
 import { portfolioStatistics } from "../../data/profile";
 
@@ -20,10 +20,7 @@ export function StackSection() {
         </LinkButton>
       </div>
       <FeaturedSkills />
-      <div className="mt-6">
-        <GroupedSkills />
-      </div>
-      <p className="mt-6 text-center text-sm leading-7 text-muted">
+      <p className="mt-6 text-sm leading-7 text-muted">
         {stackStatement}
       </p>
     </section>

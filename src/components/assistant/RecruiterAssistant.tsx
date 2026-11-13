@@ -143,7 +143,7 @@ export function RecruiterAssistant() {
         </section>
       ) : null}
       <div className="recruiter-launch-wrap">
-        <span className="recruiter-label" id="recruiter-label"><Phone size={15} aria-hidden="true" /> Ask About Anupom</span>
+        <span className="recruiter-label" id="recruiter-label"><Phone size={15} aria-hidden="true" /> Ask About Anupom <span className="recruiter-tap-hint">· Tap to talk</span></span>
         <button ref={launcher} type="button" className="recruiter-launcher" aria-label={open ? "Close Ask About Anupom" : "Ask About Anupom"} aria-expanded={open} aria-controls={open ? "recruiter-panel" : undefined} onClick={() => open ? close() : setOpen(true)}><Bot size={30} aria-hidden="true" /></button>
       </div>
     </aside>

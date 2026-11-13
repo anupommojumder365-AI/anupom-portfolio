@@ -20,7 +20,7 @@ export function ContactSection() {
           id="contact-title"
           className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl"
         >
-          Have a process that eats your time?
+          Let’s build something useful together.
         </h2>
         <p className="mt-5 leading-8 text-muted">
           Tell me what you want to automate, or book a call to discuss your project.

@@ -107,7 +107,7 @@ export function AboutSection() {
         >
           About Me<span className="text-accent">.</span>
         </h2>
-        <div className="space-y-5 text-sm leading-8 text-muted sm:text-base">
+        <div className="max-w-prose space-y-4 text-sm leading-8 text-muted">
           {aboutParagraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}

@@ -1,4 +1,5 @@
 import { lazy, Suspense, useState } from "react";
+import { Phone } from "lucide-react";
 import { AnimatePresence, m, useReducedMotion } from "motion/react";
 import { projects } from "../../data/projects";
 import type { Project } from "../../types/project";
@@ -36,8 +37,10 @@ export function ProjectShowcase({
             type="button"
             onClick={() => setFilter(value)}
             aria-pressed={filter === value}
-            className={`button px-5 ${filter === value ? "bg-ink text-white" : "border border-line bg-white text-muted hover:border-accent"}`}
+            title={value === demoFilter ? "Filter to show the live agent demo" : undefined}
+            className={`button px-4 ${filter === value ? "bg-ink text-white" : value === demoFilter ? "border border-accent/40 bg-accent/5 text-accent" : "border border-line bg-white text-muted hover:border-accent"}`}
           >
+            {value === demoFilter ? <Phone size={16} aria-hidden="true" /> : null}
             {value}
           </button>
         ))}

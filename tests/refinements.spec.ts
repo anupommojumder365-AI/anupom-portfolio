@@ -26,14 +26,7 @@ test("core skills, grouped entries, three portfolio figures, and branding", asyn
     "LangChain",
     "MCP",
   ]);
-  for (const group of skillGroups) {
-    const section = skills
-      .locator("section")
-      .filter({
-        has: page.getByRole("heading", { name: group.name, exact: true }),
-      });
-    await expect(section.locator("li")).toHaveText(group.skills);
-  }
+  await expect(skills.getByRole("link", { name: "Explore Full Tech Stack" })).toHaveAttribute("href", "/skills");
   const stats = page.getByRole("region", {
     name: "The portfolio, at a glance.",
   });
@@ -49,6 +42,12 @@ test("core skills, grouped entries, three portfolio figures, and branding", asyn
   ]);
   await expect(stats.getByText("Published Case Studies")).toHaveCount(0);
   await page.goto("/skills");
+  for (const group of skillGroups) {
+    const section = page.locator("section").filter({
+      has: page.getByRole("heading", { name: group.name, exact: true }),
+    });
+    await expect(section.locator("li")).toHaveText(group.skills);
+  }
   await expect(
     page.getByRole("list", { name: "Featured core skills" }).locator("li"),
   ).toHaveText(featuredTechnologies);

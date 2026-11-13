@@ -335,6 +335,7 @@
 }
 .recruiter-launch-wrap:hover .recruiter-label,
 .recruiter-launch-wrap:focus-within .recruiter-label { opacity: 1; visibility: visible; }
+.recruiter-tap-hint { display: none; }
 .recruiter-panel {
   width: min(360px, calc(100vw - 2rem));
   max-height: min(620px, calc(100dvh - 6.5rem));
@@ -357,6 +358,7 @@
 .recruiter-help a { color: var(--color-accent); text-decoration: underline; }
 @media (hover: none) {
   .recruiter-label { opacity: 1; visibility: visible; }
+  .recruiter-tap-hint { display: inline; }
 }
 @media (prefers-reduced-motion: reduce) {
   html {

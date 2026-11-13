@@ -18,7 +18,7 @@ export function HeroSection() {
     >
       <Reveal>
         <p className="eyebrow mb-7">
-          Independent engineer / Intelligent operations
+          Anupom Mojumder / AI Automation Engineer
         </p>
         <h1
           id="hero-title"

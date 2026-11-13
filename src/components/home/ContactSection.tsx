@@ -14,7 +14,7 @@ export function ContactSection() {
       aria-labelledby="contact-title"
       className="home-section pb-6!"
     >
-      <div className="mb-12 max-w-2xl">
+      <div className="mb-8 max-w-2xl">
         <p className="eyebrow mb-4">05 / Let’s Connect</p>
         <h2
           id="contact-title"
@@ -26,7 +26,7 @@ export function ContactSection() {
           Tell me what you want to automate, or book a call to discuss your project.
         </p>
       </div>
-      <div className="grid items-start gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
+      <div className="grid items-start gap-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-14">
         <div>
           <p className="mb-7 flex items-center gap-2 text-sm text-accent">
             <span
@@ -65,9 +65,9 @@ export function ContactSection() {
           <p className="mt-4 text-xs text-muted">
             Enquiries are reviewed manually.
           </p>
-          <div className="my-9 border-t border-line pt-8">
+          <div className="my-7 border-t border-line pt-7">
             <h3 className="mb-6 text-lg font-semibold">What happens next</h3>
-            <ol className="space-y-6">
+            <ol className="space-y-4">
               {[
                 formAvailable ? "Send your enquiry using the form." : "Email me or book a call to share your enquiry.",
                 "I can review your process and discuss the next steps with you.",

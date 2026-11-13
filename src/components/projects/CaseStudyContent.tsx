@@ -13,7 +13,7 @@ export function CaseStudyContent({
   const Heading = headingLevel;
   const relatedServices = services.filter((service) => service.project === project.slug);
   return (
-    <div className="space-y-9 text-sm leading-7">
+    <div className="space-y-7 text-sm leading-7">
       <section>
         <Heading className="mb-3 text-lg font-semibold">
           Project Overview

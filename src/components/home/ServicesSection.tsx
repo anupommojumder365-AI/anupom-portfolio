@@ -74,7 +74,7 @@ export function ServicesSection() {
           </Reveal>
         ))}
       </div>
-      <ol className="my-16 grid gap-7 md:grid-cols-3">
+      <ol className="my-12 grid gap-7 md:grid-cols-3">
         {[
           {
             title: "Discover",

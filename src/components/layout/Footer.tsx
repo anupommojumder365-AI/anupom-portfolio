@@ -48,7 +48,7 @@ export function Footer() {
           <p>
             © {currentYear} {profile.name}
           </p>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap gap-x-5 gap-y-1 pr-20">
             <a
               href={`mailto:${profile.email}`}
               className="inline-flex min-h-11 items-center hover:text-accent"

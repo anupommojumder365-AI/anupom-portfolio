@@ -3,6 +3,22 @@ import { featuredTechnologies, skillGroups } from "../src/data/skills";
 import { services } from "../src/data/services";
 import { projects } from "../src/data/projects";
 
+test("footer links remain clear of the assistant launcher", async ({ page }) => {
+  for (const width of [320, 768, 1440]) {
+    await page.setViewportSize({ width, height: 850 });
+    await page.goto("/");
+    await page.locator("footer").scrollIntoViewIfNeeded();
+    const overlap = await page.evaluate(() => {
+      const launcher = document.querySelector(".recruiter-launcher")!.getBoundingClientRect();
+      return Array.from(document.querySelectorAll("footer a")).some((link) => {
+        const rect = link.getBoundingClientRect();
+        return rect.left < launcher.right && rect.right > launcher.left && rect.top < launcher.bottom && rect.bottom > launcher.top;
+      });
+    });
+    expect(overlap).toBe(false);
+  }
+});
+
 test("compact cards retain project and service details on their related pages", async ({ page }) => {
   await page.goto("/");
   const work = page.getByRole("region", { name: "Featured projects" });

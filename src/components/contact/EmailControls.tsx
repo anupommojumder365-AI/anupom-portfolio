@@ -36,7 +36,7 @@ export function EmailControls() {
           )}
         </button>
       </div>
-      <p role="status" className="mt-2 min-h-5 text-xs text-muted">
+      <p role="status" className={status === "idle" ? "sr-only" : "mt-2 text-xs text-muted"}>
         {status === "copied"
           ? "Email copied"
           : status === "error"

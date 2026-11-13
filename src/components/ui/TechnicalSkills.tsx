@@ -39,13 +39,13 @@ export function GroupedSkills({
 }) {
   const Heading = headingLevel;
   return (
-    <div className="grid items-start gap-3 md:grid-cols-2 lg:grid-cols-3">
-      {skillGroups.map((group, index) => (
+    <div className="columns-1 gap-3 md:columns-2 lg:columns-3">
+      {skillGroups.map((group) => (
         <section
           key={group.name}
-          className={`surface min-w-0 p-5 ${index === skillGroups.length - 1 && skillGroups.length % 2 === 1 ? "md:col-span-2 md:flex md:items-start md:gap-6" : ""} ${index === skillGroups.length - 1 && skillGroups.length % 3 === 1 ? "lg:col-span-3 lg:flex lg:items-start lg:gap-6" : ""}`}
+          className="surface mb-3 min-w-0 break-inside-avoid p-5"
         >
-          <div className={index === skillGroups.length - 1 ? "md:w-64 md:shrink-0" : undefined}>
+          <div>
             <Heading className="mb-3 text-lg font-semibold leading-tight">{group.name}</Heading>
           </div>
           <div>

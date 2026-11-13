@@ -18,11 +18,11 @@ export function ChoiceField({
   const id = useId();
   return (
     <fieldset
-      className="mb-6"
+      className="mb-5"
       aria-describedby={error ? `${id}-error` : undefined}
       aria-invalid={Boolean(error)}
     >
-      <legend className="mb-3 text-sm font-semibold">
+      <legend className="mb-2 text-sm font-semibold">
         {label}
         <span className="text-accent" aria-hidden="true">
           {" "}

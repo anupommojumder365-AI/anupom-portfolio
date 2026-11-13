@@ -116,7 +116,7 @@ export function ContactForm() {
     type = "text",
     required = false,
   ) => (
-    <div className="mb-5" key={key}>
+    <div className="mb-4" key={key}>
       <label htmlFor={`lead-${key}`} className="text-sm font-semibold">
         {label}
         {required ? (
@@ -156,7 +156,7 @@ export function ContactForm() {
         aria-invalid={Boolean(showError(key))}
         aria-describedby={showError(key) ? `${key}-error` : undefined}
       />
-      <div className="mt-2 min-h-4" aria-live="polite">
+      <div className={showError(key) || (touched[key] && data[key] && !errors[key]) ? "mt-2" : ""} aria-live="polite">
         {showError(key) ? (
           <p id={`${key}-error`} className="text-xs text-red-700">
             {showError(key)}
@@ -194,10 +194,14 @@ export function ContactForm() {
       ref={formRef}
       onSubmit={submit}
       noValidate
-      className="surface p-6 sm:p-8"
+      className="surface w-full min-w-0 p-5 sm:p-6"
       aria-label="Project enquiry"
     >
-      <ol className="mb-8 flex gap-2" aria-label="Form progress">
+      <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
+        <p className="text-sm font-semibold">Project enquiry</p>
+        <p className="text-xs text-muted">Step {step + 1} of {stepTitles.length}</p>
+      </div>
+      <ol className="mb-6 flex gap-2" aria-label="Form progress">
         {stepTitles.map((title, index) => (
           <li
             key={title}
@@ -218,7 +222,7 @@ export function ContactForm() {
       <h3
         ref={headingRef}
         tabIndex={-1}
-        className="mb-6 text-xl font-semibold outline-none"
+        className="mb-5 text-lg font-semibold outline-none"
       >
         {step === 0
           ? "What are you working on?"
@@ -250,7 +254,7 @@ export function ContactForm() {
               <textarea
                 id="lead-details"
                 name="details"
-                rows={5}
+                rows={4}
                 required
                 minLength={20}
                 maxLength={5000}
@@ -328,12 +332,12 @@ export function ContactForm() {
             onChange={(event) => update("websiteTrap", event.target.value)}
           />
         </div>
-        <div className="mt-7 flex justify-between gap-3">
+        <div className="mt-5 flex justify-between gap-3">
           {step > 0 ? (
             <button
               type="button"
               onClick={() => move(step - 1)}
-              className="button button-secondary"
+              className="button button-secondary whitespace-nowrap px-3 text-[1rem]"
             >
               <ArrowLeft size={15} aria-hidden="true" />
               Back
@@ -342,7 +346,7 @@ export function ContactForm() {
             <span />
           )}
           {step < 2 ? (
-            <button type="submit" className="button button-primary">
+            <button type="submit" className="button button-primary whitespace-nowrap px-3 text-[1rem]">
               Continue
               <ArrowRight size={15} aria-hidden="true" />
             </button>
@@ -350,7 +354,7 @@ export function ContactForm() {
             <button
               type="submit"
               disabled={!endpoint || status === "loading"}
-              className="button button-primary disabled:cursor-not-allowed disabled:opacity-50"
+              className="button button-primary whitespace-nowrap px-3 text-[1rem] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {status === "loading" ? (
                 <>
@@ -368,7 +372,7 @@ export function ContactForm() {
           )}
         </div>
       </fieldset>
-      <p className="mt-5 text-xs text-muted">
+      <p className="mt-4 text-xs text-muted">
         Please share only the information needed to discuss your enquiry.
       </p>
       {!endpoint ? (

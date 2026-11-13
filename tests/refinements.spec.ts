@@ -2,6 +2,30 @@ import { test, expect } from "@playwright/test";
 import { featuredTechnologies, skillGroups } from "../src/data/skills";
 import { services } from "../src/data/services";
 import { projects } from "../src/data/projects";
+import { profile } from "../src/data/profile";
+
+test("contact options keep their destinations and the form shows its current step", async ({ page }) => {
+  await page.goto("/#contact");
+  const contact = page.locator("#contact");
+  await expect(contact.getByRole("link", { name: "Email me" })).toHaveAttribute("href", `mailto:${profile.email}`);
+  for (const [name, destination] of [["LinkedIn", profile.linkedinUrl], ["Book a call", profile.schedulingUrl]] as const) {
+    const link = contact.getByRole("link", { name, exact: true });
+    await expect(link).toHaveAttribute("href", destination!);
+    await expect(link).toHaveAttribute("target", "_blank");
+    await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  }
+  const form = contact.getByRole("form", { name: "Project enquiry" });
+  await expect(form.getByText("Step 1 of 3")).toBeVisible();
+  await form.getByRole("button", { name: "Continue" }).click();
+  await expect(form.getByText("Choose what you want to automate.")).toBeVisible();
+  await form.getByText("Voice AI Agent", { exact: true }).click();
+  await form.getByLabel("Project Details").fill("Please help automate our reception and appointment requests.");
+  await form.getByRole("button", { name: "Continue" }).click();
+  await expect(form.getByText("Step 2 of 3")).toBeVisible();
+  await form.getByRole("button", { name: "Back" }).click();
+  await expect(form.getByText("Step 1 of 3")).toBeVisible();
+  await expect(form.getByRole("radio", { name: "Voice AI Agent" })).toBeChecked();
+});
 
 test("footer links remain clear of the assistant launcher", async ({ page }) => {
   for (const width of [320, 768, 1440]) {

@@ -1,90 +1,48 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, CalendarDays } from "lucide-react";
 import { EmailControls } from "../contact/EmailControls";
 import { ContactForm } from "../contact/ContactForm";
-import { SchedulingLink } from "./ServicesSection";
 import { profile } from "../../data/profile";
 import { isValidExternalUrl } from "../../lib/projects";
-import { configuredSupabase } from "../../lib/contact";
 
 export function ContactSection() {
-  const formAvailable = Boolean(configuredSupabase());
   return (
-    <section
-      id="contact"
-      aria-labelledby="contact-title"
-      className="home-section pb-6!"
-    >
+    <section id="contact" aria-labelledby="contact-title" className="home-section pb-6!">
       <div className="mb-8 max-w-2xl">
         <p className="eyebrow mb-4">05 / Let’s Connect</p>
-        <h2
-          id="contact-title"
-          className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl"
-        >
+        <h2 id="contact-title" className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
           Let’s build something useful together.
         </h2>
-        <p className="mt-5 leading-8 text-muted">
-          Tell me what you want to automate, or book a call to discuss your project.
+        <p className="mt-4 text-sm leading-7 text-muted">
+          Get in touch about a role, a project, or an idea.
         </p>
       </div>
-      <div className="grid items-start gap-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-14">
-        <div>
-          <p className="mb-7 flex items-center gap-2 text-sm text-accent">
-            <span
-              className="size-1.5 rounded-full bg-accent"
-              aria-hidden="true"
-            />
-            Open to new projects and remote roles.
-          </p>
-          <EmailControls />
-          <div className="mt-4 flex flex-wrap gap-5 text-sm">
-            <a
-              href={profile.linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 text-accent"
-            >
-              LinkedIn
-              <ArrowUpRight size={15} aria-hidden="true" />
+      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-8">
+        <div className="rounded-2xl border border-line bg-surface-raised/50 p-5 sm:p-6">
+          <h3 className="text-lg font-semibold tracking-tight">Get in touch</h3>
+          <p className="mt-2 text-sm leading-7 text-muted">Choose the way that works for you.</p>
+          <div className="mt-5 flex flex-wrap items-start gap-3">
+            <EmailControls />
+            <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer" className="button button-secondary">
+              LinkedIn <ArrowUpRight size={16} aria-hidden="true" />
             </a>
-            {isValidExternalUrl(profile.githubUrl) ? (
-              <a
-                href={profile.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 text-accent"
-              >
-                GitHub
-                <ArrowUpRight size={15} aria-hidden="true" />
+            {isValidExternalUrl(profile.schedulingUrl) ? (
+              <a href={profile.schedulingUrl} target="_blank" rel="noopener noreferrer" className="button button-secondary">
+                <CalendarDays size={17} aria-hidden="true" /> Book a call
               </a>
             ) : (
-              <span className="flex min-h-11 items-center text-muted">
-                GitHub · coming soon
+              <span className="inline-flex flex-col gap-2">
+                <button type="button" disabled className="button button-secondary cursor-not-allowed! opacity-60">Book a call</button>
+                <span className="text-xs text-muted">Scheduling link coming soon.</span>
               </span>
             )}
           </div>
-          <p className="mt-4 text-xs text-muted">
-            Enquiries are reviewed manually.
-          </p>
-          <div className="my-7 border-t border-line pt-7">
-            <h3 className="mb-6 text-lg font-semibold">What happens next</h3>
-            <ol className="space-y-4">
-              {[
-                formAvailable ? "Send your enquiry using the form." : "Email me or book a call to share your enquiry.",
-                "I can review your process and discuss the next steps with you.",
-                "If it is a good fit, we can scope the build together.",
-              ].map((step, index) => (
-                <li key={step} className="flex gap-4">
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-line bg-white font-mono text-[10px] text-accent">
-                    0{index + 1}
-                  </span>
-                  <p className="text-sm leading-7 text-muted">{step}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div className="border-t border-line pt-7">
-            <p className="mb-4 text-sm">Prefer to talk now?</p>
-            <SchedulingLink label="Book a call" />
+          <div className="mt-6 border-t border-line pt-4">
+            <p className="text-xs leading-6 text-muted">Open to new projects and remote roles. Enquiries are reviewed manually.</p>
+            {isValidExternalUrl(profile.githubUrl) ? (
+              <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex min-h-11 items-center gap-2 text-xs font-medium text-accent">
+                GitHub <ArrowUpRight size={15} aria-hidden="true" />
+              </a>
+            ) : null}
           </div>
         </div>
         <ContactForm />

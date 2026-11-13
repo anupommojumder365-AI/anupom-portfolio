@@ -14,7 +14,7 @@ export function FeaturedSkills() {
   return (
     <ul
       aria-label="Featured core skills"
-      className="grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-5"
+      className="grid grid-cols-2 gap-x-5 sm:grid-cols-4 md:grid-cols-5"
     >
       {featuredTechnologies.map((technology, index) => (
         <li
@@ -22,7 +22,7 @@ export function FeaturedSkills() {
           className={featuredTechnologies.length % 4 === 2 && index === featuredTechnologies.length - 2 ? "sm:col-start-2 md:col-auto" : undefined}
         >
           <Reveal delay={index * 0.025}>
-            <div className="hover-chip surface flex min-h-14 items-center justify-center px-2 py-3 text-center text-[1rem] font-semibold transition-colors hover:border-accent">
+            <div className="hover-chip flex min-h-12 items-center border-b border-line px-1 py-2 text-[1rem] font-medium transition-colors">
               {technology}
             </div>
           </Reveal>
@@ -46,11 +46,10 @@ export function GroupedSkills({
           className={`surface min-w-0 p-5 ${index === skillGroups.length - 1 && skillGroups.length % 2 === 1 ? "md:col-span-2 md:flex md:items-start md:gap-6" : ""} ${index === skillGroups.length - 1 && skillGroups.length % 3 === 1 ? "lg:col-span-3 lg:flex lg:items-start lg:gap-6" : ""}`}
         >
           <div className={index === skillGroups.length - 1 ? "md:w-64 md:shrink-0" : undefined}>
-            <p className="eyebrow mb-2">0{index + 1}</p>
-            <Heading className="mb-4 text-lg font-semibold leading-tight">{group.name}</Heading>
+            <Heading className="mb-3 text-lg font-semibold leading-tight">{group.name}</Heading>
           </div>
           <div>
-            <ul className="flex flex-wrap gap-2">
+            <ul className="-ml-1 flex flex-wrap gap-x-3 gap-y-1">
               {group.skills.map((skill) => (
                 <li key={skill}>
                   <Badge>{skill}</Badge>

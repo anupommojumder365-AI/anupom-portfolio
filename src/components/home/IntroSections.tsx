@@ -14,7 +14,7 @@ export function HeroSection() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="grid items-center gap-14 pb-20 pt-4 lg:grid-cols-[1.12fr_1fr] lg:gap-14 lg:pb-28"
+      className="grid items-center gap-10 pb-16 pt-4 lg:grid-cols-[1.12fr_1fr] lg:gap-14 lg:pb-24"
     >
       <Reveal>
         <p className="eyebrow mb-7">
@@ -46,7 +46,7 @@ export function HeroSection() {
         <button type="button" aria-label="Ask About Anupom — recruiter assistant" onClick={() => window.dispatchEvent(new Event("open-recruiter-assistant"))} className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-accent">
           <Phone size={16} aria-hidden="true" /> Ask About Anupom
         </button>
-        <p className="mt-10 flex items-center gap-3 text-xs text-muted">
+        <p className="mt-7 flex items-center gap-3 text-xs text-muted">
           <span
             className="size-1.5 rounded-full bg-accent"
             aria-hidden="true"
@@ -74,7 +74,7 @@ export function AboutSection() {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="home-section grid items-center gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-20"
+      className="home-section grid items-center gap-10 lg:grid-cols-[.85fr_1.15fr] lg:gap-16"
     >
       <Reveal>
         <div className="rounded-[24px] border border-line bg-surface-raised p-3">

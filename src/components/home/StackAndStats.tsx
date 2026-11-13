@@ -40,7 +40,7 @@ export function StatisticsSection() {
         {portfolioStatistics.map(({ label, value }, index) => (
           <Reveal
             key={label}
-            className="surface p-6 sm:p-7"
+            className="surface p-5 sm:p-6"
             delay={index * 0.05}
           >
             <dt>
@@ -50,7 +50,7 @@ export function StatisticsSection() {
             <dd className="mt-4">
               <AnimatedCounter
                 value={value}
-                className="text-5xl font-semibold tracking-tight"
+                className="text-4xl font-semibold tracking-tight"
               />
             </dd>
           </Reveal>

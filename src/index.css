@@ -79,7 +79,7 @@
     @apply font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent;
   }
   .surface {
-    @apply rounded-2xl border border-line bg-surface shadow-[0_4px_24px_-16px_#242a2033];
+    @apply rounded-2xl border border-line bg-surface;
   }
   .button {
     @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition-colors;
@@ -151,9 +151,9 @@
 }
 .spotlight:hover,
 .spotlight:focus-within {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 40px -28px #18332966;
-  border-color: #1f6f4a66;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -20px #18332933;
+  border-color: #cfd9cf;
 }
 .agent-visual {
   background-image: radial-gradient(#d6dace 1px, transparent 1px);
@@ -313,7 +313,7 @@
   border-radius: 50%;
   background: #1f6f4a;
   color: #fafaf7;
-  box-shadow: 0 8px 24px #173f2d38;
+  box-shadow: 0 4px 14px #173f2d24;
   transition: transform 200ms ease, background-color 250ms ease, color 250ms ease;
 }
 .recruiter-launcher:hover { transform: translateY(-3px); }
@@ -335,6 +335,7 @@
 }
 .recruiter-launch-wrap:hover .recruiter-label,
 .recruiter-launch-wrap:focus-within .recruiter-label { opacity: 1; visibility: visible; }
+.recruiter-widget:has(.recruiter-panel) .recruiter-label { opacity: 0; visibility: hidden; }
 .recruiter-tap-hint { display: none; }
 .recruiter-panel {
   width: min(360px, calc(100vw - 2rem));
@@ -343,7 +344,7 @@
   border: 1px solid var(--color-line);
   border-radius: 1.2rem;
   background: var(--color-surface);
-  box-shadow: 0 16px 52px #173f2d33;
+  box-shadow: 0 12px 36px #173f2d24;
 }
 .recruiter-panel-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.2rem; border-bottom: 1px solid var(--color-line); }
 .recruiter-panel-header h2 { font-size: 1.05rem; font-weight: 700; line-height: 1.3; }

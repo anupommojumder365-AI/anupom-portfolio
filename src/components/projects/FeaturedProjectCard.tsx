@@ -1,11 +1,7 @@
-import { useState } from "react";
 import {
   ArrowUpRight,
   ExternalLink,
   GitBranch,
-  Mic,
-  Network,
-  Workflow,
 } from "lucide-react";
 import type { Project } from "../../types/project";
 import { Badge } from "../ui/Badge";
@@ -25,54 +21,32 @@ export function FeaturedProjectCard({
   headingLevel?: "h2" | "h3";
 }) {
   const Heading = headingLevel;
-  const [previewFailed, setPreviewFailed] = useState(false);
-  const preview = project.screenshots[0];
-  const Icon =
-    project.showcaseGroup === "Voice AI"
-      ? Mic
-      : project.showcaseGroup === "Agents"
-        ? Network
-        : Workflow;
   return (
-    <Spotlight
-      className={`surface h-full ${project.clientWork ? "border-accent/30 bg-[#f1f5ef]" : ""}`}
-    >
+    <Spotlight className="surface h-full">
       <article className="flex h-full min-w-0 flex-col p-5 sm:p-6">
-        <div className="mb-3 flex items-start justify-between gap-3">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-line bg-white text-accent">
-            <Icon size={20} strokeWidth={1.4} aria-hidden="true" />
-          </span>
-          <div className="flex min-w-0 items-start justify-end gap-2">
-            <span
-              className={`text-right font-mono text-[11px] uppercase tracking-wider ${project.clientWork ? "hover-chip rounded-md bg-accent/10 px-2.5 py-1 font-semibold text-accent" : "text-muted"}`}
-            >
-              {project.clientWork ? "Client Work / Voice AI" : `Selected / 0${index + 1}`}
-            </span>
-            {preview && !previewFailed ? (
-              <img src={preview.src} alt={preview.alt} loading="lazy" decoding="async" onError={() => setPreviewFailed(true)} className="h-14 w-20 shrink-0 rounded-lg border border-line bg-surface-raised object-contain sm:w-24" />
-            ) : null}
-          </div>
-        </div>
+        <p className="mb-3 font-mono text-[11px] uppercase tracking-wider text-muted">
+          {project.clientWork ? "Client Work / Voice AI" : `Selected / 0${index + 1}`}
+        </p>
         <Heading className="mb-2 text-xl font-semibold leading-tight tracking-tight">
           {project.title}
         </Heading>
         <p className="mb-3 max-w-prose text-[1rem] leading-6 text-muted">
           {project.shortDescription}
         </p>
-        <div className="mb-3 flex flex-wrap gap-1.5">
+        <div className="-ml-1 mb-4 flex flex-wrap gap-x-3 gap-y-0.5" aria-label="Technologies">
           {project.technologies.map((technology) => (
             <Badge key={technology}>{technology}</Badge>
           ))}
         </div>
         {project.metrics?.length ? (
-          <dl className="mb-3 grid grid-cols-[repeat(auto-fit,minmax(110px,1fr))] gap-x-4 gap-y-3 border-y border-line py-3">
+          <dl className="mb-4 grid grid-cols-[repeat(auto-fit,minmax(110px,1fr))] gap-x-4 gap-y-3">
             {project.metrics.map((metric) => (
               <div key={metric.label} className="min-w-0">
                 <dt className="sr-only">{metric.label}</dt>
                 <dd>
                   <AnimatedCounter
                     value={metric.value}
-                    className="block text-lg font-semibold leading-tight tracking-tight"
+                    className="block text-base font-semibold leading-tight tracking-tight"
                   />
                   <span className="mt-1 block text-[0.95rem] leading-5 text-muted">
                     {metric.label}
@@ -83,7 +57,7 @@ export function FeaturedProjectCard({
           </dl>
         ) : null}
         {project.supportingNote ? (
-          <p className="mb-3 text-xs leading-6 text-accent">
+          <p className="mb-4 text-xs leading-6 text-muted">
             {project.supportingNote}
           </p>
         ) : null}

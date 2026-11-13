@@ -38,7 +38,7 @@ export function ProjectShowcase({
             onClick={() => setFilter(value)}
             aria-pressed={filter === value}
             title={value === demoFilter ? "Filter to show the live agent demo" : undefined}
-            className={`button px-4 ${filter === value ? "bg-ink text-white" : value === demoFilter ? "border border-accent/40 bg-accent/5 text-accent" : "border border-line bg-white text-muted hover:border-accent"}`}
+            className={`button border px-4 ${filter === value ? "border-accent/40 bg-accent/5 text-accent" : "border-line bg-transparent text-muted hover:border-accent"}`}
           >
             {value === demoFilter ? <Phone size={16} aria-hidden="true" /> : null}
             {value}

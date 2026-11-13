@@ -62,9 +62,6 @@ export function ServicesSection() {
                   <span className="font-mono text-[11px] text-muted">
                     SERVICE / 0{index + 1}
                   </span>
-                  <span className="text-xl text-accent" aria-hidden="true">
-                    ↗
-                  </span>
                 </div>
                 <ServiceVisual kind={service.kind} />
                 <h3 className="mb-2 text-xl font-semibold leading-tight tracking-tight">
@@ -74,16 +71,16 @@ export function ServicesSection() {
                   {service.description}
                 </p>
                 {"proof" in service ? (
-                  <div className="mb-3 rounded-xl bg-accent/5 px-3 py-2 text-[0.95rem] leading-6 font-medium text-accent">
+                  <div className="mb-3 text-[0.95rem] leading-6 font-medium text-ink">
                     <p>{service.proof}</p>
                   </div>
                 ) : (
-                  <p className="mb-3 text-[0.95rem] leading-6 text-accent">
+                  <p className="mb-3 text-[0.95rem] leading-6 text-muted">
                     {"context" in service ? service.context : ""}
                   </p>
                 )}
-                <div className="service-details mt-auto border-t border-line pt-3">
-                  <div className="mb-3 flex flex-wrap gap-1.5">
+                <div className="service-details mt-auto pt-1">
+                  <div className="-ml-1 mb-2 flex flex-wrap gap-x-3 gap-y-0.5" aria-label="Technologies">
                     {service.technologies.map((technology) => (
                       <Badge key={technology}>{technology}</Badge>
                     ))}

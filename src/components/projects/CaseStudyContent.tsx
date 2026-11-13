@@ -1,4 +1,3 @@
-import { Workflow } from "lucide-react";
 import type { Project } from "../../types/project";
 import { Badge } from "../ui/Badge";
 import { ScreenshotGallery } from "./ScreenshotGallery";
@@ -100,8 +99,7 @@ export function CaseStudyContent({
         <Heading className="mb-3 text-lg font-semibold">
           Workflow Architecture
         </Heading>
-        <div className="rounded-xl border border-dashed border-line bg-surface-raised p-7 text-center">
-          <Workflow className="mx-auto mb-3 text-accent" aria-hidden="true" />
+        <div className="rounded-xl bg-surface-raised/70 p-5 sm:p-6">
           <p className="text-muted">
             {project.architectureDescription ??
               "Architecture diagram placeholder — actual workflow asset to be supplied."}
@@ -109,7 +107,7 @@ export function CaseStudyContent({
           {project.architectureFlow?.length ? (
             <ol
               aria-label="Workflow architecture and data flow"
-              className="mt-5 flex flex-wrap items-center justify-center gap-2 text-sm"
+              className="mt-4 flex flex-wrap items-center gap-2 text-sm"
             >
               {project.architectureFlow.map((step, index) => (
                 <li key={step} className="flex items-center gap-2">
@@ -118,7 +116,7 @@ export function CaseStudyContent({
                       →
                     </span>
                   ) : null}
-                  <span className="hover-chip rounded-lg border border-line bg-white px-3 py-2">
+                  <span className="rounded px-1 py-1">
                     {step}
                   </span>
                 </li>

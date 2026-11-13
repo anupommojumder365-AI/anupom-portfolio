@@ -174,7 +174,7 @@ export function ContactForm() {
   if (status === "success")
     return (
       <div
-        className="surface form-step flex min-h-[530px] flex-col items-center justify-center p-10 text-center"
+        className="surface form-step flex flex-col items-center justify-center p-10 text-center"
         role="status"
       >
         <ShieldCheck
@@ -227,7 +227,7 @@ export function ContactForm() {
             : "Where can I reach you?"}
       </h3>
       <fieldset disabled={status === "loading"} className="min-w-0">
-        <div className="form-step min-h-[390px]" key={step}>
+        <div className="form-step" key={step}>
           {step === 0 ? (
             <>
               <ChoiceField

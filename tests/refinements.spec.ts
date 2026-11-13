@@ -4,6 +4,47 @@ import { services } from "../src/data/services";
 import { projects } from "../src/data/projects";
 import { profile } from "../src/data/profile";
 
+test("contact cards align on desktop and adapt to form validation", async ({ page }) => {
+  for (const width of [320, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 850 });
+    await page.goto(`/?card_layout=${width}#contact`);
+    const contact = page.locator("#contact");
+    const left = contact.locator("div.rounded-2xl").first();
+    const form = contact.getByRole("form", { name: "Project enquiry" });
+    const checkCards = async () => {
+      const [a, b] = await Promise.all([left.boundingBox(), form.boundingBox()]);
+      expect(Math.abs(a!.width - b!.width)).toBeLessThan(1);
+      if (width >= 1024) {
+        expect(Math.abs(a!.y - b!.y)).toBeLessThan(1);
+        expect(Math.abs(a!.height - b!.height)).toBeLessThan(1);
+      } else {
+        expect(b!.y).toBeGreaterThanOrEqual(a!.y + a!.height);
+      }
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    };
+    await checkCards();
+    await form.getByRole("button", { name: "Continue" }).click();
+    await expect(form.getByText("Choose what you want to automate.")).toBeVisible();
+    await checkCards();
+    await form.getByText("Voice AI Agent", { exact: true }).click();
+    await form.getByLabel("Project Details").fill("Please help automate reception and appointment requests.");
+    await form.getByRole("button", { name: "Continue" }).click();
+    await checkCards();
+    await form.getByRole("button", { name: "Continue" }).click();
+    await expect(form.getByText("Select a budget range.")).toBeVisible();
+    await checkCards();
+    await form.getByText("Under $500", { exact: true }).click();
+    await form.getByText("1 month", { exact: true }).click();
+    await form.getByText("WhatsApp", { exact: true }).click();
+    await form.getByRole("button", { name: "Continue" }).click();
+    await checkCards();
+    await form.getByLabel("WhatsApp number").focus();
+    await form.getByLabel("WhatsApp number").blur();
+    await expect(form.getByText("Enter a WhatsApp number, including country code.")).toBeVisible();
+    await checkCards();
+  }
+});
+
 test("compact enquiry form preserves WhatsApp fields and responsive controls", async ({ page }) => {
   for (const width of [320, 1440]) {
     await page.setViewportSize({ width, height: 850 });

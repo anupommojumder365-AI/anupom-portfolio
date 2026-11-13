@@ -16,7 +16,7 @@ export function ContactSection() {
           Get in touch about a role, a project, or an idea.
         </p>
       </div>
-      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-8">
+      <div className="grid items-stretch gap-5 lg:grid-cols-2 lg:gap-8">
         <div className="rounded-2xl border border-line bg-surface-raised/50 p-5 sm:p-6">
           <h3 className="text-lg font-semibold tracking-tight">Get in touch</h3>
           <p className="mt-2 text-sm leading-7 text-muted">Choose the way that works for you.</p>

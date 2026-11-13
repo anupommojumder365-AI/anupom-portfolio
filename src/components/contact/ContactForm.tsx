@@ -194,7 +194,7 @@ export function ContactForm() {
       ref={formRef}
       onSubmit={submit}
       noValidate
-      className="surface w-full min-w-0 p-5 lg:w-[74%] lg:max-w-[30rem]"
+      className="surface w-full min-w-0 p-5"
       aria-label="Project enquiry"
     >
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
